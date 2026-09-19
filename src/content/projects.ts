@@ -14,37 +14,37 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "Data Schema & Storage",
+        stage: "Data Schema & Storage",
         title: "Relational Schema Architecture",
         detail: "Constructed relational database schema in PostgreSQL/SQLite modeling customer profiles, orders, transactions, products, and regional revenue metrics."
       },
       {
         step: 1,
-        phase: "Descriptive Analytics",
+        stage: "Descriptive Analytics",
         title: "Executive KPI Calculation Engine",
         detail: "Engineered aggregation pipeline computing Average Order Value (AOV), monthly revenue velocity, payment method distribution, and state-wise performance."
       },
       {
         step: 2,
-        phase: "Predictive Analytics",
+        stage: "Predictive Analytics",
         title: "Prophet Time-Series Forecasting",
         detail: "Integrated Facebook Prophet models to compute 30-day forward demand projections with upper and lower statistical confidence bands."
       },
       {
         step: 3,
-        phase: "Customer Intelligence",
+        stage: "Customer Intelligence",
         title: "Health Scoring & Churn Risk Detection",
         detail: "Built customer intelligence module quantifying repeat vs new customer purchase ratios, health scores, and early churn warning flags."
       },
       {
         step: 4,
-        phase: "GenAI Executive Reporting",
+        stage: "GenAI Executive Reporting",
         title: "Google Gemini Briefing Layer",
         detail: "Connected Google Gemini AI API to transform raw data outliers into actionable natural-language executive briefs and decision logs."
       },
       {
         step: 5,
-        phase: "Production Deployment",
+        stage: "Production Deployment",
         title: "Vercel Serverless Platform",
         detail: "Restructured backend endpoints into serverless-compatible Flask routes with vercel.json configurations, successfully deploying live to production."
       }
@@ -74,37 +74,37 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "Problem Formulation",
+        stage: "Problem Formulation",
         title: "Geospatial Dataset Structuring",
         detail: "Curated and structured hospital facilities dataset (hospitals.csv) and emergency transit GPS coordinates (ambulance_routes.csv, live_positions.csv)."
       },
       {
         step: 1,
-        phase: "Telemetry Core",
+        stage: "Telemetry Core",
         title: "Live Tracking Engine",
         detail: "Developed tracker_server.py and dashboard_registry.py to ingest, synchronize, and broadcast vehicle telemetry across active sessions."
       },
       {
         step: 2,
-        phase: "Routing & Allocation",
+        stage: "Routing & Allocation",
         title: "Nearest-Facility Dispatch Algorithm",
         detail: "Implemented distance-based emergency routing algorithms calculating real-time impedance factors and routing to the nearest trauma center."
       },
       {
         step: 3,
-        phase: "Interface Design",
+        stage: "Interface Design",
         title: "Dual-Dashboard System",
         detail: "Engineered responsive dark UI catering to two distinct interfaces: Paramedic mobile telemetry unit and Central Dispatch Operations command."
       },
       {
         step: 4,
-        phase: "Event Triggers",
+        stage: "Event Triggers",
         title: "Siren Audio & Status Synchronization",
         detail: "Integrated Web Audio API siren alerts and synchronized shared route management for critical transit notifications."
       },
       {
         step: 5,
-        phase: "Serverless Deployment",
+        stage: "Serverless Deployment",
         title: "Vercel Edge Integration",
         detail: "Packaged endpoints as lightweight Vercel serverless functions (/api/ambulance, /api/health), deploying the live application."
       }
@@ -134,31 +134,31 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "Pipeline Architecture",
+        stage: "Pipeline Architecture",
         title: "Event-Driven Ingestion Setup",
         detail: "Configured Gmail API triggers and n8n webhook listeners to capture incoming messages in real-time."
       },
       {
         step: 1,
-        phase: "LLM Classification",
+        stage: "LLM Classification",
         title: "Gemini & LangChain Categorization",
         detail: "Formulated prompt pipelines classifying incoming emails into work, promotions, social, and personal buckets."
       },
       {
         step: 2,
-        phase: "Automated Actions",
+        stage: "Automated Actions",
         title: "Labeling & Summarization Routing",
         detail: "Automated work-email summarization, promotional archiving, and draft response generation."
       },
       {
         step: 3,
-        phase: "Data Sink & Alerts",
+        stage: "Data Sink & Alerts",
         title: "Google Sheets & Telegram Integration",
         detail: "Appended structured metadata to Google Sheets for auditing and dispatched high-priority Telegram alerts."
       },
       {
         step: 4,
-        phase: "Hardening",
+        stage: "Hardening",
         title: "End-to-End Orchestration",
         detail: "Integrated credentials, error handlers, and fallback branches to ensure continuous 24/7 inbox processing."
       }
@@ -187,31 +187,31 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "Dataset Curation",
+        stage: "Dataset Curation",
         title: "Morphological Image Collection",
         detail: "Gathered indigenous cattle breed imagery across diverse farm lighting, orientations, and coat patterns."
       },
       {
         step: 1,
-        phase: "Data Augmentation",
+        stage: "Data Augmentation",
         title: "OpenCV Preprocessing Pipelines",
         detail: "Engineered robust augmentation (rotation, zoom, color jitter) and created an explicit 'Unknown' class for non-cattle images."
       },
       {
         step: 2,
-        phase: "Model Training",
+        stage: "Model Training",
         title: "MobileNetV2 Transfer Learning",
         detail: "Fine-tuned deep convolutional networks using MobileNetV2 backbones for lightweight edge inference."
       },
       {
         step: 3,
-        phase: "Evaluation",
+        stage: "Evaluation",
         title: "Per-Class Validation Reporting",
         detail: "Structured modular evaluation scripts tracking precision, recall, and confusion matrices across breeds."
       },
       {
         step: 4,
-        phase: "Hackathon Presentation",
+        stage: "Hackathon Presentation",
         title: "SIH 2025 Institutional Showcase",
         detail: "Represented Panipat Institute of Engineering and Technology (PIET) as institutional representative at Smart India Hackathon."
       }
@@ -240,37 +240,37 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "Architecture Design",
+        stage: "Architecture Design",
         title: "Deterministic MLOps Specifications",
         detail: "Defined core architectural contract: reproducible batch execution, schema validation, structured telemetry, and zero unhandled edge conditions."
       },
       {
         step: 1,
-        phase: "Configuration",
+        stage: "Configuration",
         title: "YAML Config Schema Validation",
         detail: "Implemented strict config parser (config.yaml) validating random seeds, rolling window integers, and contract pipeline versioning."
       },
       {
         step: 2,
-        phase: "Data Ingestion",
+        stage: "Data Ingestion",
         title: "OHLCV Parsing & NaN Edge Handling",
         detail: "Ingested 10,000-row market dataset with schema validation; excluded the first window-1 NaN rows from calculation to ensure determinism."
       },
       {
         step: 3,
-        phase: "Signal Engine",
+        stage: "Signal Engine",
         title: "Rolling Mean Signal Derivation",
         detail: "Computed dynamic rolling mean on closing prices and generated binary execution signals (signal = 1 where close > rolling_mean, else 0)."
       },
       {
         step: 4,
-        phase: "Observability",
+        stage: "Observability",
         title: "Structured Metrics & Rotating Logging",
         detail: "Generated machine-readable metrics.json capturing execution stats and time-stamped run.log trails for production monitoring."
       },
       {
         step: 5,
-        phase: "Containerization",
+        stage: "Containerization",
         title: "Single-Stage Docker Image Packaging",
         detail: "Constructed minimal Python Dockerfile allowing single-command headless CLI execution in batch cluster environments."
       }
@@ -299,31 +299,31 @@ export const projectsData: Project[] = [
     steps: [
       {
         step: 0,
-        phase: "API Client",
+        stage: "API Client",
         title: "Cryptographic HMAC-SHA256 Signing",
         detail: "Built client.py implementing low-level HTTP requests, millisecond payload timestamping, and HMAC-SHA256 cryptographic signatures."
       },
       {
         step: 1,
-        phase: "Input Validation",
+        stage: "Input Validation",
         title: "Strict Order Parameter Verification",
         detail: "Developed validators.py ensuring symbol validity, order types (LIMIT/MARKET), trade sides (BUY/SELL), and tick quantity bounds."
       },
       {
         step: 2,
-        phase: "Order Management",
+        stage: "Order Management",
         title: "Order Placement & Normalization",
         detail: "Constructed orders.py converting raw Binance exchange JSON into normalized, strongly-typed OrderResult summary objects."
       },
       {
         step: 3,
-        phase: "Logging Architecture",
+        stage: "Logging Architecture",
         title: "Dual-Target Rotating Log System",
         detail: "Configured logging_config.py outputting timestamped audit events to rotating trading_bot.log files and developer console."
       },
       {
         step: 4,
-        phase: "CLI Interface",
+        stage: "CLI Interface",
         title: "Command-Line Execution Tooling",
         detail: "Engineered CLI entry-point (cli.py) with argparse flags, enabling automated and manual order testing on the USDT-M Testnet."
       }

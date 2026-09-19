@@ -61,9 +61,6 @@ export const Header: React.FC = () => {
             <Network className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Causal Graph</span>
             <span className="sm:hidden">Graph</span>
-            <span className="text-[9px] px-1 py-0.2 rounded bg-surface-subtle border border-surface-border text-primary font-mono ml-0.5">
-              P2
-            </span>
           </button>
         </div>
 

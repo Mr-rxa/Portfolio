@@ -124,8 +124,8 @@ export const TerminalModal: React.FC = () => {
 
       case 'secret':
         newHistory.push({
-          type: 'output',
-          text: 'Secret unlocked: Rahul built this portfolio with a force-directed causal engine in Phase 2. Stay tuned!',
+          type: 'success',
+          text: '★ Secret unlocked: You found the backstage pass! When Rahul isn\'t training models or tuning graph physics, he\'s probably refining terminal themes, optimizing coffee-to-code ratios, or wondering why the loss didn\'t converge at 2 AM. Thanks for exploring!',
         });
         break;
 

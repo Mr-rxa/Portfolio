@@ -209,7 +209,7 @@ export const CaseStudyModal: React.FC = () => {
                           <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-surface border border-surface-border text-primary">
                             STEP 0{s.step}
                           </span>
-                          <span className="text-[10px] font-mono text-content-muted">{s.phase}</span>
+                          <span className="text-[10px] font-mono text-content-muted">{s.stage}</span>
                         </div>
                         <div className="flex flex-col gap-0.5 flex-1">
                           <span className="text-xs font-mono font-bold text-content">{s.title}</span>
@@ -227,34 +227,29 @@ export const CaseStudyModal: React.FC = () => {
                   <span className="text-primary font-mono">05.</span> System Metrics &amp; Validation
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {project.metrics.map((m, idx) => {
-                    const isPending = m.value.startsWith('TODO_RAHUL:');
-                    const cleanValue = isPending ? m.value.replace('TODO_RAHUL:', '').trim() || 'Pending Baseline' : m.value;
-
-                    return (
-                      <div
-                        key={idx}
-                        className="p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1 hover:border-surface-border/80 transition-colors"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="text-[11px] text-content-muted">{m.label}</span>
-                          {!m.verified && (
-                            <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-signal-orange/10 text-signal-orange border border-signal-orange/20">
-                              Calibrating
-                            </span>
-                          )}
-                        </div>
-                        <span className={`text-base font-mono font-bold ${
-                          m.verified ? 'text-primary' : 'text-signal-orange'
-                        }`}>
-                          {cleanValue}
-                        </span>
-                        {m.detail && (
-                          <span className="text-[10px] text-content-faint leading-tight">{m.detail}</span>
+                  {project.metrics.map((m, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1 hover:border-surface-border/80 transition-colors"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] text-content-muted">{m.label}</span>
+                        {!m.verified && (
+                          <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-signal-orange/10 text-signal-orange border border-signal-orange/20">
+                            Calibrating
+                          </span>
                         )}
                       </div>
-                    );
-                  })}
+                      <span className={`text-base font-mono font-bold ${
+                        m.verified ? 'text-primary' : 'text-signal-orange'
+                      }`}>
+                        {m.value}
+                      </span>
+                      {m.detail && (
+                        <span className="text-[10px] text-content-faint leading-tight">{m.detail}</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 

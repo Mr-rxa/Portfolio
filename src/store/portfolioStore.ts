@@ -15,7 +15,7 @@ interface PortfolioState {
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
-  viewMode: 'recruiter', // Defaults to recruiter view for instant clarity in Phase 1
+  viewMode: 'recruiter', // Defaults to recruiter view for instant clarity
   setViewMode: (mode) => {
     set({ viewMode: mode });
     if (typeof window !== 'undefined') {

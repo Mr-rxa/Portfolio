@@ -2,7 +2,7 @@ export type PlayableProofType = 'retail-war-room' | 'lifeline-ai' | 'signal-pipe
 
 export interface ProjectStep {
   step: number;
-  phase: string;
+  stage: string;
   title: string;
   detail: string;
 }
@@ -11,7 +11,7 @@ export interface ProjectMetric {
   label: string;
   value: string;
   detail?: string;
-  verified: boolean; // false indicates TODO_RAHUL placeholder
+  verified: boolean; // false indicates pending empirical validation
 }
 
 export interface Project {

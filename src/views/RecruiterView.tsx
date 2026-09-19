@@ -359,7 +359,7 @@ export const RecruiterView: React.FC = () => {
                         <div key={s.step} className="p-2.5 rounded-md bg-background border border-surface-border flex flex-col gap-1">
                           <div className="flex items-center justify-between text-[9px] font-mono text-content-faint">
                             <span className="text-primary font-bold">STEP 0{s.step}</span>
-                            <span>{s.phase}</span>
+                            <span>{s.stage}</span>
                           </div>
                           <span className="text-[11px] font-mono font-medium text-content">{s.title}</span>
                           <p className="text-[10px] text-content-muted line-clamp-2 leading-relaxed">{s.detail}</p>
@@ -371,11 +371,7 @@ export const RecruiterView: React.FC = () => {
 
                 {/* Quantitative Impact Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
-                  {project.metrics.map((m, idx) => {
-                    const isPending = m.value.startsWith('TODO_RAHUL:');
-                    const cleanValue = isPending ? m.value.replace('TODO_RAHUL:', '').trim() || 'Pending Baseline' : m.value;
-
-                    return (
+                  {project.metrics.map((m, idx) => (
                       <div
                         key={idx}
                         className="p-3 rounded-lg bg-surface-subtle border border-surface-border flex flex-col gap-0.5"
@@ -391,7 +387,7 @@ export const RecruiterView: React.FC = () => {
                         <span className={`text-base font-mono font-bold ${
                           m.verified ? 'text-primary' : 'text-signal-orange'
                         }`}>
-                          {cleanValue}
+                          {m.value}
                         </span>
                         {m.detail && (
                           <span className="text-[10px] text-content-faint leading-tight">
@@ -399,8 +395,7 @@ export const RecruiterView: React.FC = () => {
                           </span>
                         )}
                       </div>
-                    );
-                  })}
+                  ))}
                 </div>
 
                 {/* Footer: Tech stack & Links */}
