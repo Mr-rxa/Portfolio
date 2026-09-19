@@ -30,3 +30,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3A404F;
 }
+
+/* Respect reduced-motion preference for CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible focus ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #C6FF3D;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

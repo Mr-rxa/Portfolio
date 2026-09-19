@@ -13,7 +13,7 @@ import {
 import { GithubIcon, LinkedinIcon } from '../components/Icons';
 
 export const RecruiterView: React.FC = () => {
-  const { setViewMode } = usePortfolioStore();
+  const { setViewMode, setActiveProjectId } = usePortfolioStore();
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -264,10 +264,13 @@ export const RecruiterView: React.FC = () => {
                   </div>
 
                   {project.proofType !== 'none' && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-subtle border border-surface-border text-xs font-mono text-primary w-fit">
+                    <button
+                      onClick={() => setActiveProjectId(project.slug)}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-subtle border border-surface-border text-xs font-mono text-primary w-fit hover:border-primary/50 transition-colors"
+                    >
                       <PlayCircle className="w-3.5 h-3.5" />
                       <span>Interactive Proof</span>
-                    </div>
+                    </button>
                   )}
                 </div>
 
@@ -354,10 +357,10 @@ export const RecruiterView: React.FC = () => {
                     )}
                     {project.proofType !== 'none' && (
                       <button
-                        onClick={() => setViewMode('graph')}
+                        onClick={() => setActiveProjectId(project.slug)}
                         className="flex items-center gap-1 text-primary hover:underline font-semibold"
                       >
-                        <span>Demo (P3/P4)</span>
+                        <span>Interactive Proof</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     )}
