@@ -217,7 +217,7 @@ export const projectsData: Project[] = [
       }
     ],
     metrics: [
-      { label: "Hackathon Status", value: "SIH '25 Finalist", detail: "PIET institutional representative", verified: true },
+      { label: "Hackathon Status", value: "SIH '25 Participant", detail: "PIET institutional representative", verified: true },
       { label: "Architecture", value: "MobileNetV2", detail: "Edge-optimized transfer learning", verified: true },
       { label: "Robustness", value: "Unknown Rejection", detail: "Guards against out-of-distribution inputs", verified: true }
     ],
