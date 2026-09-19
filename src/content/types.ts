@@ -58,7 +58,9 @@ export interface Education {
   period: string;
   location: string;
   highlights: string[];
-  courses: string[];
+  courses?: string[];
+  achievements?: string[];
+  certifications?: string[];
 }
 
 export interface SkillCategory {
@@ -78,6 +80,7 @@ export interface Profile {
   tagline: string;
   shortBio: string;
   location: string;
+  phone?: string;
   availability: string;
   email: string;
   github: string;

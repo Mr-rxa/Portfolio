@@ -3,35 +3,36 @@ import { Profile } from './types';
 export const profileData: Profile = {
   name: "Rahul Sharma",
   handle: "rahul.dev",
-  role: "AI/ML Engineer & Data Systems Builder",
+  role: "AI & Data Systems Engineer",
   tagline: "I turn messy data into decisions.",
-  shortBio: "B.Tech IT undergraduate (PIET, grad 2028) building production causal systems, operational BI command centers, and real-time dispatch algorithms. Interned at Revolt Motors working on EV telematics, customer complaint clustering, and retail war room intelligence.",
-  location: "Haryana / Delhi NCR, India",
-  availability: "Available for Summer 2025 / 2026 AI/ML & Data Engineering Roles",
-  email: "rahulsharma.connect@gmail.com", // TODO_RAHUL: Confirm official preferred contact email
+  shortBio: "B.Tech Information Technology undergraduate (PIET, grad 2028) focused on AI engineering, backend development, and business analytics. Hands-on experience building AI-powered applications, REST APIs, machine learning pipelines, automation workflows, and data-driven dashboards using Python, Flask, TensorFlow, LangChain, n8n, and related APIs.",
+  location: "Rewari, Haryana, India",
+  phone: "+91-8307629663",
+  availability: "Available for Summer 2025 / 2026 AI Engineering & Analytics Roles",
+  email: "sharmarahul5437@gmail.com",
   github: "https://github.com/Mr-rxa",
-  linkedin: "https://linkedin.com/in/rahulsharma", // TODO_RAHUL: Update with your exact LinkedIn URL
-  resumeUrl: "/Rahul_Sharma_Resume.pdf", // TODO_RAHUL: Upload resume PDF to public folder
+  linkedin: "https://linkedin.com/in/rahul-sharma-825894237",
+  resumeUrl: "/Rahul_Sharma_Resume.pdf",
   keyStats: [
     {
-      label: "Operational Impact",
-      value: "85%+",
-      detail: "Reporting turnaround acceleration at Revolt Motors"
-    },
-    {
-      label: "Causal Models",
-      value: "5+ Systems",
-      detail: "From EV Battery degradation to emergency dispatch"
+      label: "Internships",
+      value: "2 Roles",
+      detail: "Revolt Motors (BI / AI) & My Job Grow in AI (LLM / RAG)"
     },
     {
       label: "Data Scale",
-      value: "100k+ Records",
-      detail: "Cleaned, clustered, and modeled across projects"
+      value: "1,000,000+",
+      detail: "Analyzed official UIDAI Aadhaar records & retail streams"
+    },
+    {
+      label: "Hackathon",
+      value: "SIH '25",
+      detail: "Smart India Hackathon Institutional Representative"
     },
     {
       label: "Undergrad",
       value: "PIET '28",
-      detail: "B.Tech Information Technology"
+      detail: "B.Tech Information Technology (Panipat, Haryana)"
     }
   ]
 };

@@ -5,20 +5,48 @@ export const educationData: Education[] = [
     institution: "Panipat Institute of Engineering and Technology (PIET)",
     degree: "Bachelor of Technology (B.Tech)",
     field: "Information Technology",
-    period: "2024 — 2028",
-    location: "Haryana, India",
+    period: "2024 — 2028 (Expected)",
+    location: "Panipat, Haryana, India",
     highlights: [
-      "Focused coursework in Data Structures & Algorithms, Database Management, Discrete Math, and Applied Statistics.",
-      "Co-authored research paper on Fine-Grained Indigenous Cattle Breed Recognition using custom deep learning attention networks.",
-      "Active participant in collegiate hackathons and tech innovation challenges.",
-      "Core interests: Causal Machine Learning, Edge Computer Vision, and Operational BI Engineering."
+      "Smart India Hackathon (SIH) 2025: Institutional representative for an automated cattle breed recognition computer vision solution.",
+      "H4CKP13T 0X01 CTF: Active competitor in cybersecurity capture-the-flag covering cryptography, web exploitation, and reverse engineering.",
+      "Technical focus in AI engineering, backend APIs, data pipeline orchestration, and business analytics."
     ],
     courses: [
       "Data Structures & Algorithms",
       "Database Systems & SQL",
-      "Applied Linear Algebra & Statistics",
       "Computer Networks",
-      "Object Oriented Systems"
+      "Object-Oriented Programming (C++/Java)",
+      "Applied Mathematics & Statistics"
+    ],
+    achievements: [
+      "Smart India Hackathon (SIH) 2025 Institutional Representative",
+      "H4CKP13T 0X01 CTF Participant (Cryptography & Web Exploitation)"
+    ],
+    certifications: [
+      "Git and GitHub — Spoken Tutorial, IIT Bombay (2025)",
+      "C++ — Sololearn (2025)",
+      "C Programming — Spoken Tutorial, IIT Bombay (2024)"
+    ]
+  },
+  {
+    institution: "Board of School Education Haryana (BSEH)",
+    degree: "Class XII, Senior Secondary",
+    field: "Science / Mathematics",
+    period: "2024",
+    location: "Haryana, India",
+    highlights: [
+      "Completed Senior Secondary education under BSEH curriculum with strong foundation in Physics, Chemistry, and Mathematics."
+    ]
+  },
+  {
+    institution: "Board of School Education Haryana (BSEH)",
+    degree: "Class X, Secondary",
+    field: "General Secondary Curriculum",
+    period: "2022",
+    location: "Haryana, India",
+    highlights: [
+      "Secondary school completion with distinctions in Science and Mathematics."
     ]
   }
 ];

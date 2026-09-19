@@ -6,21 +6,21 @@ export const projectsData: Project[] = [
     slug: "ai-retail-war-room",
     title: "AI-Retail-War-Room",
     category: "Operations / BI",
-    summary: "Executive Business Intelligence and decision intelligence platform combining descriptive retail analytics, Prophet time-series forecasting, and Google Gemini GenAI reporting.",
-    problem: "Retail leadership across multi-region networks lacked unified intelligence, experiencing severe reporting lag that hid inventory bottlenecks, localized churn, and sudden demand spikes until weeks later.",
-    contribution: "Engineered an end-to-end decision platform integrating multi-tier KPI calculation, automated Prophet 30-day demand forecasting, customer health scoring, and Generative AI executive reporting briefings.",
+    summary: "Business Intelligence and decision intelligence platform combining descriptive retail analytics, Facebook Prophet time-series forecasting, and Google Gemini GenAI executive reporting.",
+    problem: "Dealership managers and executive leadership across regional networks lacked real-time visibility into retail health, resulting in multi-day reporting lag that hid inventory bottlenecks, open customer complaints, and localized demand shifts.",
+    contribution: "Engineered an end-to-end decision intelligence platform integrating multi-tier KPI calculation, automated Prophet 30-day demand forecasting, customer health scoring, and Generative AI executive briefings.",
     architecture: "PostgreSQL / SQLite -> Python (Pandas/NumPy) -> Facebook Prophet -> Google Gemini GenAI -> Flask Web API -> Vercel Serverless UI",
-    impact: "Accelerated executive decision turnaround from 36 hours to real time, providing automated forecasting and customer churn risk classification.",
+    impact: "Accelerated executive reporting turnaround to real-time, providing automated forecasting and customer churn risk classification.",
     steps: [
       {
         step: 0,
-        phase: "Data Modeling & Storage",
-        title: "Relational Schema Design",
+        phase: "Data Schema & Storage",
+        title: "Relational Schema Architecture",
         detail: "Constructed relational database schema in PostgreSQL/SQLite modeling customer profiles, orders, transactions, products, and regional revenue metrics."
       },
       {
         step: 1,
-        phase: "Descriptive BI",
+        phase: "Descriptive Analytics",
         title: "Executive KPI Calculation Engine",
         detail: "Engineered aggregation pipeline computing Average Order Value (AOV), monthly revenue velocity, payment method distribution, and state-wise performance."
       },
@@ -38,15 +38,15 @@ export const projectsData: Project[] = [
       },
       {
         step: 4,
-        phase: "Decision Support",
-        title: "Google Gemini Executive Briefing Layer",
+        phase: "GenAI Executive Reporting",
+        title: "Google Gemini Briefing Layer",
         detail: "Connected Google Gemini AI API to transform raw data outliers into actionable natural-language executive briefs and decision logs."
       },
       {
         step: 5,
-        phase: "Cloud Deployment",
-        title: "Vercel Serverless Production Architecture",
-        detail: "Restructured backend endpoints into serverless-compatible Flask routes with vercel.json configurations, successfully deploying to production."
+        phase: "Production Deployment",
+        title: "Vercel Serverless Platform",
+        detail: "Restructured backend endpoints into serverless-compatible Flask routes with vercel.json configurations, successfully deploying live to production."
       }
     ],
     metrics: [
@@ -66,11 +66,11 @@ export const projectsData: Project[] = [
     slug: "lifeline-ai",
     title: "Lifeline-AI",
     category: "AI / ML",
-    summary: "Real-time emergency medical response platform coordinating live ambulance GPS tracking, nearest-hospital allocation, and synchronized multi-dashboard siren alerts.",
+    summary: "Real-time emergency medical response platform coordinating live ambulance GPS tracking, nearest-hospital allocation, proximity alerts, and synchronized multi-dashboard siren alerts.",
     problem: "Standard navigation platforms optimize purely for civilian traffic flow, ignoring emergency vehicle right-of-way, live triage capacity, and dynamic hospital bed saturation during critical transit.",
-    contribution: "Engineered emergency dispatch system featuring geospatial nearest-hospital routing, real-time vehicle GPS tracking, paramedic and central dispatcher dashboards, and critical audio siren triggers.",
+    contribution: "Built and deployed an emergency response platform for ambulance tracking, hospital routing, proximity alerts, and real-time dashboard monitoring with shared state management and server-sent events.",
     architecture: "Geospatial Telemetry (CSV/GPS) -> tracker_server.py -> Routing & Allocation API -> Web Audio Siren -> Vercel Serverless Platform",
-    impact: "Provides dynamic route recalculation and real-time paramedic-to-hospital coordination to minimize emergency transit latency.",
+    impact: "Provides distance-based ambulance-to-hospital routing calculations and real-time telemetry flows to minimize emergency response latency.",
     steps: [
       {
         step: 0,
@@ -88,7 +88,7 @@ export const projectsData: Project[] = [
         step: 2,
         phase: "Routing & Allocation",
         title: "Nearest-Facility Dispatch Algorithm",
-        detail: "Implemented emergency dispatch routing algorithm calculating real-time impedance factors and routing to the optimal medical center."
+        detail: "Implemented distance-based emergency routing algorithms calculating real-time impedance factors and routing to the nearest trauma center."
       },
       {
         step: 3,
@@ -114,12 +114,118 @@ export const projectsData: Project[] = [
       { label: "Dispatch Architecture", value: "Dual Dashboard", detail: "Paramedic + Central Operations", verified: true },
       { label: "Deployment", value: "Vercel Serverless", detail: "Zero-maintenance edge endpoints", verified: true }
     ],
-    techStack: ["Python", "Flask", "JavaScript", "Geospatial Indexing", "Web Audio API", "Vercel"],
+    techStack: ["Python", "Flask", "JavaScript", "Leaflet", "REST APIs", "Web Audio API", "Vercel"],
     proofType: "lifeline-ai",
     featured: true,
     githubUrl: "https://github.com/Mr-rxa/Lifeline-AI",
     liveUrl: "https://lifeline-ai-ten.vercel.app",
-    date: "2026"
+    date: "2025 — 2026"
+  },
+  {
+    id: "gmail-ai-workflow",
+    slug: "gmail-ai-workflow",
+    title: "AI-Powered Gmail Classification and Automation",
+    category: "AI / ML",
+    summary: "Event-driven email automation pipeline leveraging Google Gemini and LangChain to classify incoming emails, auto-summarize work correspondence, and trigger Telegram alerts.",
+    problem: "High email volumes create severe cognitive overhead; important client and work correspondence gets buried beneath automated promotional digests and social alerts.",
+    contribution: "Constructed an event-driven automation pipeline integrating Gmail, Google Gemini, LangChain, Google Sheets, and Telegram through n8n workflow nodes.",
+    architecture: "Gmail Webhook -> n8n Workflow -> LangChain + Google Gemini -> Classification Engine -> Google Sheets + Telegram Bot",
+    impact: "Automated real-time email labeling, work-email summarization, promotional handling, and AI-assisted personal-email draft responses.",
+    steps: [
+      {
+        step: 0,
+        phase: "Pipeline Architecture",
+        title: "Event-Driven Ingestion Setup",
+        detail: "Configured Gmail API triggers and n8n webhook listeners to capture incoming messages in real-time."
+      },
+      {
+        step: 1,
+        phase: "LLM Classification",
+        title: "Gemini & LangChain Categorization",
+        detail: "Formulated prompt pipelines classifying incoming emails into work, promotions, social, and personal buckets."
+      },
+      {
+        step: 2,
+        phase: "Automated Actions",
+        title: "Labeling & Summarization Routing",
+        detail: "Automated work-email summarization, promotional archiving, and draft response generation."
+      },
+      {
+        step: 3,
+        phase: "Data Sink & Alerts",
+        title: "Google Sheets & Telegram Integration",
+        detail: "Appended structured metadata to Google Sheets for auditing and dispatched high-priority Telegram alerts."
+      },
+      {
+        step: 4,
+        phase: "Hardening",
+        title: "End-to-End Orchestration",
+        detail: "Integrated credentials, error handlers, and fallback branches to ensure continuous 24/7 inbox processing."
+      }
+    ],
+    metrics: [
+      { label: "Classification Engine", value: "Gemini + LangChain", detail: "Zero-shot category tagging", verified: true },
+      { label: "Automation Core", value: "n8n Workflows", detail: "Multi-service webhook orchestration", verified: true },
+      { label: "Notifications", value: "Telegram Alerts", detail: "Real-time critical email dispatch", verified: true }
+    ],
+    techStack: ["n8n", "Google Gemini", "LangChain", "Gmail API", "Google Sheets", "Telegram API", "Python"],
+    proofType: "none",
+    featured: true,
+    githubUrl: "https://github.com/Mr-rxa/gmail-ai-workflow",
+    date: "2025"
+  },
+  {
+    id: "cattle-breed-recognition",
+    slug: "cattle-breed-recognition",
+    title: "Cattle Breed Recognition System (SIH '25)",
+    category: "AI / ML",
+    summary: "Fine-grained computer vision system for indigenous cattle breed classification with an 'Unknown' rejection class, representing PIET at Smart India Hackathon 2025.",
+    problem: "Accurate breed identification is critical for agricultural digital census and livestock breeding, but morphological variance between indigenous cattle breeds is visually subtle.",
+    contribution: "Developed an edge-ready computer vision system with MobileNetV2 transfer learning, image augmentation, an 'Unknown' non-cattle rejection class, and per-class evaluation pipelines.",
+    architecture: "Leaflet/Image Preprocessing -> Data Augmentation -> MobileNetV2 Transfer Learning -> Evaluation Pipeline -> Inference API",
+    impact: "Selected as PIET institutional representative solution at Smart India Hackathon (SIH) 2025.",
+    steps: [
+      {
+        step: 0,
+        phase: "Dataset Curation",
+        title: "Morphological Image Collection",
+        detail: "Gathered indigenous cattle breed imagery across diverse farm lighting, orientations, and coat patterns."
+      },
+      {
+        step: 1,
+        phase: "Data Augmentation",
+        title: "OpenCV Preprocessing Pipelines",
+        detail: "Engineered robust augmentation (rotation, zoom, color jitter) and created an explicit 'Unknown' class for non-cattle images."
+      },
+      {
+        step: 2,
+        phase: "Model Training",
+        title: "MobileNetV2 Transfer Learning",
+        detail: "Fine-tuned deep convolutional networks using MobileNetV2 backbones for lightweight edge inference."
+      },
+      {
+        step: 3,
+        phase: "Evaluation",
+        title: "Per-Class Validation Reporting",
+        detail: "Structured modular evaluation scripts tracking precision, recall, and confusion matrices across breeds."
+      },
+      {
+        step: 4,
+        phase: "Hackathon Presentation",
+        title: "SIH 2025 Institutional Showcase",
+        detail: "Represented Panipat Institute of Engineering and Technology (PIET) as institutional representative at Smart India Hackathon."
+      }
+    ],
+    metrics: [
+      { label: "Hackathon Status", value: "SIH '25 Finalist", detail: "PIET institutional representative", verified: true },
+      { label: "Architecture", value: "MobileNetV2", detail: "Edge-optimized transfer learning", verified: true },
+      { label: "Robustness", value: "Unknown Rejection", detail: "Guards against out-of-distribution inputs", verified: true }
+    ],
+    techStack: ["Python", "TensorFlow", "MobileNetV2", "OpenCV", "CNN", "Transfer Learning"],
+    proofType: "none",
+    featured: false,
+    githubUrl: "https://github.com/Mr-rxa/cattle-breed-recognition",
+    date: "2025"
   },
   {
     id: "signal-pipeline-mlops",
@@ -231,112 +337,6 @@ export const projectsData: Project[] = [
     proofType: "none",
     featured: false,
     githubUrl: "https://github.com/Mr-rxa/trading_bot_binance",
-    date: "2026"
-  },
-  {
-    id: "farm-to-fork",
-    slug: "farm-to-fork",
-    title: "farm_to_fork",
-    category: "Operations / BI",
-    summary: "Full-stack agricultural marketplace platform connecting regional farmers directly with commercial buyers, built with FastAPI and relational inventory tracking.",
-    problem: "Traditional farm-to-table supply chains suffer from multiple intermediary markups and lack transparent produce provenance and inventory tracking.",
-    contribution: "Engineered a direct marketplace architecture featuring relational SQL inventory models, FastAPI asynchronous endpoints, and responsive server-rendered front-end templates.",
-    architecture: "sql/schema.sql -> FastAPI (Pydantic Routers) -> Jinja2 HTML Templates -> Seed Data Automation -> Local Server",
-    impact: "Provides transparent farm batch provenance, price discovery, and inventory tracking without middleman overhead.",
-    steps: [
-      {
-        step: 0,
-        phase: "Schema Design",
-        title: "Agricultural Relational Modeling",
-        detail: "Authored sql/schema.sql defining tables for produce categories, farm origins, inventory batches, pricing, and merchant orders."
-      },
-      {
-        step: 1,
-        phase: "Backend Services",
-        title: "FastAPI REST API Architecture",
-        detail: "Engineered high-throughput asynchronous backend routes with Pydantic validation for produce listings and merchant checkout."
-      },
-      {
-        step: 2,
-        phase: "Frontend Interface",
-        title: "Jinja2 Server-Rendered Views",
-        detail: "Created clean HTML/CSS templates optimized for low-bandwidth mobile connections in rural agricultural markets."
-      },
-      {
-        step: 3,
-        phase: "Data Seeding",
-        title: "Automated Produce Generation Scripts",
-        detail: "Developed seed_data.py and populate_sample_data.py scripts to simulate realistic supply chains with regional produce varieties."
-      },
-      {
-        step: 4,
-        phase: "Integration",
-        title: "Configuration & Local Testing",
-        detail: "Configured environment secret management (.env.example), smoke test suites, and local Uvicorn development server execution."
-      }
-    ],
-    metrics: [
-      { label: "Architecture", value: "FastAPI + SQL", detail: "Asynchronous REST backend", verified: true },
-      { label: "Data Modeling", value: "Relational Schema", detail: "Batch-level produce provenance", verified: true },
-      { label: "Frontend", value: "Jinja2 Templates", detail: "Low-bandwidth optimized UI", verified: true }
-    ],
-    techStack: ["Python", "FastAPI", "SQL", "SQLite / PostgreSQL", "Jinja2", "Uvicorn"],
-    proofType: "none",
-    featured: false,
-    githubUrl: "https://github.com/Mr-rxa/farm_to_fork",
-    date: "2026"
-  },
-  {
-    id: "uidai",
-    slug: "uidai",
-    title: "UIDAI",
-    category: "Data Analytics & Public Policy",
-    summary: "Large-scale exploratory data analysis and district-level coverage gap modeling across 1,000,000+ official Indian Aadhaar government enrolment records.",
-    problem: "Public welfare delivery often misses marginalized populations when regional administrative centers lack district-level visibility into Aadhaar saturation and enrolment deficits.",
-    contribution: "Analyzed over 1M official government transactional records, engineered district coverage gap metrics, and developed an exploratory visualization dashboard for public policy insights.",
-    architecture: "UIDAI CSV Chunks (1M+ Records) -> Pandas ETL -> Enrollment_gap.ipynb Analysis -> district_aadhaar_coverage_gap.csv -> app.py Dashboard",
-    impact: "Quantified district-level enrolment deficits across Indian states to identify underserved rural and demographic pockets.",
-    steps: [
-      {
-        step: 0,
-        phase: "Data Ingestion",
-        title: "Massive Multi-Chunk CSV Ingestion",
-        detail: "Ingested and merged multiple chunked official UIDAI dataset partitions totaling over 1,000,000 raw transactional enrolment entries."
-      },
-      {
-        step: 1,
-        phase: "Data Hygiene",
-        title: "Demographic Cleansing & Normalization",
-        detail: "Handled district naming variations, missing demographic fields, and temporal distribution anomalies in Pandas."
-      },
-      {
-        step: 2,
-        phase: "Exploratory Analytics",
-        title: "Jupyter Analytical Workflows",
-        detail: "Authored Enrollment_gap.ipynb conducting deep-dive statistical analysis on gender ratios, age distribution, and enrolment rates."
-      },
-      {
-        step: 3,
-        phase: "Policy Metric Modeling",
-        title: "District Coverage Gap Quantification",
-        detail: "Computed and exported district_aadhaar_coverage_gap.csv identifying administrative regions lagging behind national coverage averages."
-      },
-      {
-        step: 4,
-        phase: "Visual Application",
-        title: "Python Decision Dashboard Interface",
-        detail: "Built app.py interface enabling policy researchers to visually filter districts by saturation gap and target welfare interventions."
-      }
-    ],
-    metrics: [
-      { label: "Records Analyzed", value: "1,000,000+", detail: "Official UIDAI enrolment dataset", verified: true },
-      { label: "Geographic Scope", value: "All India", detail: "District & state level granularity", verified: true },
-      { label: "Output Artifact", value: "Coverage Gap Index", detail: "Identifies underserved districts", verified: true }
-    ],
-    techStack: ["Python", "Pandas", "Jupyter Notebook", "Data Analytics", "Public Sector Policy", "EDA"],
-    proofType: "none",
-    featured: false,
-    githubUrl: "https://github.com/Mr-rxa/UIDAI",
     date: "2026"
   }
 ];

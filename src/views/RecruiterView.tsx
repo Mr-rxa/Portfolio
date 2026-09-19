@@ -48,6 +48,29 @@ export const RecruiterView: React.FC = () => {
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-content leading-tight">
                 {profileData.tagline}
               </h1>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono text-content-muted pt-1">
+                <span className="text-content font-medium">{profileData.location}</span>
+                <span>•</span>
+                <a href={`mailto:${profileData.email}`} className="text-primary hover:underline">
+                  {profileData.email}
+                </a>
+                {profileData.phone && (
+                  <>
+                    <span>•</span>
+                    <a href={`tel:${profileData.phone}`} className="hover:text-primary transition-colors">
+                      {profileData.phone}
+                    </a>
+                  </>
+                )}
+                <span>•</span>
+                <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  LinkedIn
+                </a>
+                <span>•</span>
+                <a href={profileData.github} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  GitHub
+                </a>
+              </div>
               <p className="text-base sm:text-lg text-content-muted leading-relaxed max-w-3xl">
                 {profileData.shortBio}
               </p>
@@ -471,17 +494,45 @@ export const RecruiterView: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-surface-border">
-                  <span className="text-xs font-mono text-content-muted mr-1">Key Courses:</span>
-                  {edu.courses.map((course) => (
-                    <span
-                      key={course}
-                      className="px-2 py-0.5 rounded bg-surface-subtle border border-surface-border text-xs font-mono text-content-muted"
-                    >
-                      {course}
-                    </span>
-                  ))}
-                </div>
+                {edu.courses && edu.courses.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-surface-border">
+                    <span className="text-xs font-mono text-content-muted mr-1">Key Courses:</span>
+                    {edu.courses.map((course) => (
+                      <span
+                        key={course}
+                        className="px-2 py-0.5 rounded bg-surface-subtle border border-surface-border text-xs font-mono text-content-muted"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {edu.achievements && edu.achievements.length > 0 && (
+                  <div className="flex flex-col gap-1.5 pt-2 border-t border-surface-border">
+                    <span className="text-xs font-mono font-bold text-primary">Achievements &amp; Hackathons:</span>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.achievements.map((ach, aIdx) => (
+                        <span key={aIdx} className="px-2.5 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-medium">
+                          ★ {ach}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {edu.certifications && edu.certifications.length > 0 && (
+                  <div className="flex flex-col gap-1.5 pt-2 border-t border-surface-border">
+                    <span className="text-xs font-mono font-bold text-content">Certifications:</span>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.certifications.map((cert, cIdx) => (
+                        <span key={cIdx} className="px-2.5 py-0.5 rounded bg-surface-subtle border border-surface-border text-xs font-mono text-content-muted">
+                          ✓ {cert}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

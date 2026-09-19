@@ -67,12 +67,20 @@ export function buildCausalGraph(): CausalGraphData {
       color: '#FF5B1F', // Signal orange
     });
 
-    // Connect Revolt to AI Retail War Room
-    links.push({
-      source: expId,
-      target: 'proj-ai-retail-war-room',
-      relation: 'incubated',
-    });
+    // Connect internships to projects
+    if (exp.id === 'revolt-motors') {
+      links.push({
+        source: expId,
+        target: 'proj-ai-retail-war-room',
+        relation: 'incubated',
+      });
+    } else if (exp.id === 'my-job-grow-ai') {
+      links.push({
+        source: expId,
+        target: 'proj-gmail-ai-workflow',
+        relation: 'orchestrated',
+      });
+    }
 
     exp.techStack.forEach((t) => {
       techSet.add(t);
@@ -86,21 +94,23 @@ export function buildCausalGraph(): CausalGraphData {
 
   // 3. Education (PIET)
   educationData.forEach((edu) => {
-    const eduId = 'edu-piet';
-    nodes.push({
-      id: eduId,
-      label: 'PIET (2024-28)',
-      group: 'education',
-      sublabel: edu.field,
-      radius: 18,
-      color: '#60A5FA', // Blue
-    });
+    if (edu.institution.includes('PIET')) {
+      const eduId = 'edu-piet';
+      nodes.push({
+        id: eduId,
+        label: 'PIET (2024-28)',
+        group: 'education',
+        sublabel: edu.field,
+        radius: 18,
+        color: '#60A5FA', // Blue
+      });
 
-    links.push({
-      source: eduId,
-      target: 'proj-uidai',
-      relation: 'academic_research',
-    });
+      links.push({
+        source: eduId,
+        target: 'proj-cattle-breed-recognition',
+        relation: 'sih_hackathon',
+      });
+    }
   });
 
   // 4. Tech Nodes
