@@ -13,10 +13,12 @@ export const CausalGraph: React.FC = () => {
   const [graphData] = useState(() => buildCausalGraph());
   const simulationRef = useRef<d3.Simulation<GraphNode, GraphLink> | null>(null);
 
-  const transformRef = useRef({ x: 0, y: 0, k: 1 });
+  const transformRef = useRef({ x: 0, y: 0, k: 1.1 });
   const isDraggingRef = useRef(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
   const draggedNodeRef = useRef<GraphNode | null>(null);
+  const isTransitioningRef = useRef(false);
+  const touchStartRef = useRef<{ dist: number; midX: number; midY: number } | null>(null);
 
   const [focusedNodeIdx, setFocusedNodeIdx] = useState<number>(-1);
 
@@ -34,6 +36,8 @@ export const CausalGraph: React.FC = () => {
     });
     return ids;
   }, [hoveredNode, graphData.links]);
+
+  const renderFrameRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -73,8 +77,10 @@ export const CausalGraph: React.FC = () => {
       ctx.scale(k, k);
 
       const hasHover = hoveredNode !== null;
+      const now = performance.now();
 
-      graphData.links.forEach((link) => {
+      // 1. Draw Links
+      graphData.links.forEach((link, lIdx) => {
         const source = link.source as GraphNode;
         const target = link.target as GraphNode;
         if (!source.x || !source.y || !target.x || !target.y) return;
@@ -99,8 +105,25 @@ export const CausalGraph: React.FC = () => {
           ctx.lineWidth = 1.2;
         }
         ctx.stroke();
+
+        // Data pipeline flowing pulse along highlighted links
+        if (isHighlighted && !prefersReducedMotion) {
+          const speed = 0.0012;
+          const phase = (now * speed + lIdx * 0.25) % 1;
+          const px = source.x + (target.x - source.x) * phase;
+          const py = source.y + (target.y - source.y) * phase;
+
+          ctx.beginPath();
+          ctx.arc(px, py, 3, 0, 2 * Math.PI);
+          ctx.fillStyle = '#C6FF3D';
+          ctx.shadowColor = '#C6FF3D';
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
       });
 
+      // 2. Draw Nodes
       graphData.nodes.forEach((node) => {
         if (!node.x || !node.y) return;
 
@@ -113,6 +136,7 @@ export const CausalGraph: React.FC = () => {
         ctx.save();
         ctx.globalAlpha = alpha;
 
+        // Glowing outer halo on hover / connected project
         if (isHovered || (hasHover && isHighlighted && node.group === 'project')) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.radius + 6, 0, 2 * Math.PI);
@@ -120,6 +144,7 @@ export const CausalGraph: React.FC = () => {
           ctx.fill();
         }
 
+        // Node base circle
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, 2 * Math.PI);
         ctx.fillStyle = node.group === 'project' ? '#12141A' : node.group === 'experience' ? '#1E1410' : '#151820';
@@ -129,11 +154,13 @@ export const CausalGraph: React.FC = () => {
         ctx.lineWidth = isHovered ? 3 : node.group === 'project' ? 2 : 1.5;
         ctx.stroke();
 
+        // Node core dot
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.group === 'project' ? 3.5 : 2, 0, 2 * Math.PI);
         ctx.fillStyle = node.color;
         ctx.fill();
 
+        // Label typography
         ctx.fillStyle = isHighlighted ? '#EDEAE3' : '#6B7280';
         ctx.font = `${node.group === 'project' ? 'bold 11px' : '10px'} JetBrains Mono`;
         ctx.textAlign = 'center';
@@ -151,7 +178,20 @@ export const CausalGraph: React.FC = () => {
       ctx.restore();
     };
 
+    renderFrameRef.current = render;
     simulation.on('tick', render);
+
+    // Subtle continuous loop when hovering to animate pipeline pulses
+    let animId: number | null = null;
+    const pulseLoop = () => {
+      if (hoveredNode !== null && !prefersReducedMotion) {
+        render();
+        animId = requestAnimationFrame(pulseLoop);
+      }
+    };
+    if (hoveredNode !== null && !prefersReducedMotion) {
+      animId = requestAnimationFrame(pulseLoop);
+    }
 
     const handleResize = () => {
       const newW = canvas.clientWidth;
@@ -163,10 +203,11 @@ export const CausalGraph: React.FC = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      if (animId) cancelAnimationFrame(animId);
       simulation.stop();
       window.removeEventListener('resize', handleResize);
     };
-  }, [graphData, hoveredNode, connectedNodeIds, selectedGroup]);
+  }, [graphData, hoveredNode, connectedNodeIds, selectedGroup, prefersReducedMotion]);
 
   const screenToWorld = useCallback((screenX: number, screenY: number) => {
     const { x, y, k } = transformRef.current;
@@ -183,14 +224,61 @@ export const CausalGraph: React.FC = () => {
       if (!node.x || !node.y) continue;
       const dx = world.x - node.x;
       const dy = world.y - node.y;
-      if (dx * dx + dy * dy <= (node.radius + 6) * (node.radius + 6)) {
+      if (dx * dx + dy * dy <= (node.radius + 8) * (node.radius + 8)) {
         return node;
       }
     }
     return null;
   }, [graphData.nodes, screenToWorld]);
 
+  // Smooth camera interpolation to target node
+  const animateCameraToNode = useCallback((node: GraphNode, onComplete: () => void) => {
+    const canvas = canvasRef.current;
+    if (!canvas || !node.x || !node.y || prefersReducedMotion) {
+      onComplete();
+      return;
+    }
+
+    isTransitioningRef.current = true;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const startX = transformRef.current.x;
+    const startY = transformRef.current.y;
+    const startK = transformRef.current.k;
+
+    const targetK = 1.85;
+    const targetX = width / 2 - node.x * targetK;
+    const targetY = height / 2 - node.y * targetK;
+    const startTime = performance.now();
+    const duration = 380; // ms
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      // easeOutCubic
+      const ease = 1 - Math.pow(1 - progress, 3);
+
+      transformRef.current = {
+        x: startX + (targetX - startX) * ease,
+        y: startY + (targetY - startY) * ease,
+        k: startK + (targetK - startK) * ease,
+      };
+
+      renderFrameRef.current();
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        isTransitioningRef.current = false;
+        onComplete();
+      }
+    };
+
+    requestAnimationFrame(step);
+  }, [prefersReducedMotion]);
+
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (isTransitioningRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const sx = e.clientX - rect.left;
     const sy = e.clientY - rect.top;
@@ -208,6 +296,7 @@ export const CausalGraph: React.FC = () => {
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (isTransitioningRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const sx = e.clientX - rect.left;
     const sy = e.clientY - rect.top;
@@ -237,13 +326,54 @@ export const CausalGraph: React.FC = () => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (isTransitioningRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const sx = e.clientX - rect.left;
     const sy = e.clientY - rect.top;
     const node = getNodeAt(sx, sy);
     if (node && node.slug) {
-      setActiveProjectId(node.slug);
+      const slug = node.slug;
+      animateCameraToNode(node, () => {
+        setActiveProjectId(slug);
+      });
     }
+  };
+
+  // Touch gesture support for mobile/tablets
+  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (e.touches.length === 2) {
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+      const midX = (t1.clientX + t2.clientX) / 2;
+      const midY = (t1.clientY + t2.clientY) / 2;
+      touchStartRef.current = { dist, midX, midY };
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (e.touches.length === 2 && touchStartRef.current) {
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+      const zoomFactor = dist / touchStartRef.current.dist;
+      const newK = Math.max(0.4, Math.min(3.0, transformRef.current.k * zoomFactor));
+
+      const rect = e.currentTarget.getBoundingClientRect();
+      const sx = touchStartRef.current.midX - rect.left;
+      const sy = touchStartRef.current.midY - rect.top;
+
+      transformRef.current.x = sx - (sx - transformRef.current.x) * (newK / transformRef.current.k);
+      transformRef.current.y = sy - (sy - transformRef.current.y) * (newK / transformRef.current.k);
+      transformRef.current.k = newK;
+
+      touchStartRef.current.dist = dist;
+      renderFrameRef.current();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartRef.current = null;
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
@@ -301,7 +431,10 @@ export const CausalGraph: React.FC = () => {
         simulationRef.current?.tick();
       }
     } else if (e.key === 'Enter' && hoveredNode && hoveredNode.slug) {
-      setActiveProjectId(hoveredNode.slug);
+      const slug = hoveredNode.slug;
+      animateCameraToNode(hoveredNode, () => {
+        setActiveProjectId(slug);
+      });
     }
   };
 
@@ -316,6 +449,7 @@ export const CausalGraph: React.FC = () => {
     >
       <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#C6FF3D_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
 
+      {/* Graph HUD Controls */}
       <div className="absolute top-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
         <div className="p-3 rounded-xl bg-surface/90 border border-surface-border backdrop-blur-md shadow-lg pointer-events-auto flex items-center gap-4">
           <div className="flex items-center gap-2">
@@ -338,6 +472,7 @@ export const CausalGraph: React.FC = () => {
           </div>
         </div>
 
+        {/* Group Filter */}
         <div className="p-1 rounded-xl bg-surface/90 border border-surface-border backdrop-blur-md shadow-lg pointer-events-auto flex items-center gap-1">
           {['all', 'project', 'tech', 'experience'].map((group) => (
             <button
@@ -354,11 +489,13 @@ export const CausalGraph: React.FC = () => {
           ))}
         </div>
 
+        {/* Camera Zoom Controls */}
         <div className="p-1 rounded-xl bg-surface/90 border border-surface-border backdrop-blur-md shadow-lg pointer-events-auto flex items-center gap-1">
           <button
             onClick={() => handleZoom('in')}
             className="p-1.5 rounded-lg text-content-muted hover:text-content hover:bg-surface-subtle transition-colors"
             title="Zoom In"
+            aria-label="Zoom in"
           >
             <ZoomIn className="w-4 h-4" />
           </button>
@@ -366,6 +503,7 @@ export const CausalGraph: React.FC = () => {
             onClick={() => handleZoom('out')}
             className="p-1.5 rounded-lg text-content-muted hover:text-content hover:bg-surface-subtle transition-colors"
             title="Zoom Out"
+            aria-label="Zoom out"
           >
             <ZoomOut className="w-4 h-4" />
           </button>
@@ -373,12 +511,14 @@ export const CausalGraph: React.FC = () => {
             onClick={handleResetCamera}
             className="p-1.5 rounded-lg text-content-muted hover:text-content hover:bg-surface-subtle transition-colors"
             title="Reset View"
+            aria-label="Reset view"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
         </div>
       </div>
 
+      {/* HTML5 Canvas */}
       <canvas
         ref={canvasRef}
         role="img"
@@ -387,11 +527,15 @@ export const CausalGraph: React.FC = () => {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         onClick={handleClick}
         onWheel={handleWheel}
-        className="w-full h-full cursor-grab active:cursor-grabbing block"
+        className="w-full h-full cursor-grab active:cursor-grabbing block touch-none"
       />
 
+      {/* Hover Node Card */}
       {hoveredNode && (
         <div className="absolute bottom-6 left-6 z-20 max-w-xs p-4 rounded-xl bg-surface/95 border border-primary/40 backdrop-blur-md shadow-2xl pointer-events-none font-mono text-xs flex flex-col gap-1.5 animate-in fade-in slide-in-from-bottom-2 duration-150">
           <div className="flex items-center justify-between gap-2">
@@ -414,14 +558,15 @@ export const CausalGraph: React.FC = () => {
           )}
           <span className="text-[10px] text-content-faint pt-1 border-t border-surface-border">
             {hoveredNode.group === 'project'
-              ? 'Click to open full case study'
+              ? 'Click node to fly in & open case study'
               : 'Hovering highlights connected projects'}
           </span>
         </div>
       )}
 
+      {/* Keyboard & Controls Guide */}
       <div className="absolute bottom-4 right-4 z-10 hidden sm:flex items-center gap-2 text-[11px] font-mono text-content-faint pointer-events-none">
-        <span>Scroll to Zoom</span>
+        <span>Scroll / Pinch to Zoom</span>
         <span>•</span>
         <span>Drag to Pan</span>
         <span>•</span>

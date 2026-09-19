@@ -4,3 +4,7 @@ dist
 *.local
 capture-screenshots.cjs
 capture-more.cjs
+capture-all-proofs.cjs
+capture-final.cjs
+create-pdf.cjs
+*.cjs

@@ -150,13 +150,33 @@ export const CaseStudyModal: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-2">
+              <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-3">
                 <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
-                  <span className="text-primary font-mono">03.</span> System Architecture
+                  <span className="text-primary font-mono">03.</span> System Architecture &amp; Data Pipeline
                 </span>
-                <code className="text-xs font-mono text-primary bg-background p-3 rounded-lg border border-surface-border block overflow-x-auto">
-                  {project.architecture}
-                </code>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 overflow-x-auto py-1">
+                  {project.architecture.split('->').map((rawStage, idx, arr) => {
+                    const stage = rawStage.trim();
+                    return (
+                      <React.Fragment key={idx}>
+                        <div className="flex-1 min-w-[140px] p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1.5 hover:border-primary/50 transition-colors group">
+                          <div className="flex items-center justify-between text-[10px] font-mono text-content-faint">
+                            <span>STAGE 0{idx + 1}</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary/70 group-hover:bg-primary transition-colors" />
+                          </div>
+                          <span className="text-xs font-mono font-medium text-content group-hover:text-primary transition-colors leading-tight">
+                            {stage}
+                          </span>
+                        </div>
+                        {idx < arr.length - 1 && (
+                          <div className="hidden sm:flex items-center justify-center text-primary font-mono text-sm px-1 select-none">
+                            →
+                          </div>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-3">
@@ -164,22 +184,34 @@ export const CaseStudyModal: React.FC = () => {
                   <span className="text-primary font-mono">04.</span> Quantitative Impact
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {project.metrics.map((m, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 rounded-lg bg-background border border-surface-border flex flex-col gap-1"
-                    >
-                      <span className="text-[11px] text-content-muted">{m.label}</span>
-                      <span className={`text-base font-mono font-bold ${
-                        m.verified ? 'text-primary' : 'text-signal-orange'
-                      }`}>
-                        {m.value}
-                      </span>
-                      {m.detail && (
-                        <span className="text-[10px] text-content-faint">{m.detail}</span>
-                      )}
-                    </div>
-                  ))}
+                  {project.metrics.map((m, idx) => {
+                    const isPending = m.value.startsWith('TODO_RAHUL:');
+                    const cleanValue = isPending ? m.value.replace('TODO_RAHUL:', '').trim() || 'Pending Baseline' : m.value;
+
+                    return (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1 hover:border-surface-border/80 transition-colors"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] text-content-muted">{m.label}</span>
+                          {!m.verified && (
+                            <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-signal-orange/10 text-signal-orange border border-signal-orange/20">
+                              Calibrating
+                            </span>
+                          )}
+                        </div>
+                        <span className={`text-base font-mono font-bold ${
+                          m.verified ? 'text-primary' : 'text-signal-orange'
+                        }`}>
+                          {cleanValue}
+                        </span>
+                        {m.detail && (
+                          <span className="text-[10px] text-content-faint leading-tight">{m.detail}</span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

@@ -310,24 +310,36 @@ export const RecruiterView: React.FC = () => {
 
                 {/* Quantitative Impact Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
-                  {project.metrics.map((m, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 rounded-lg bg-surface-subtle border border-surface-border flex flex-col gap-0.5"
-                    >
-                      <span className="text-[11px] text-content-muted">{m.label}</span>
-                      <span className={`text-base font-mono font-bold ${
-                        m.verified ? 'text-primary' : 'text-signal-orange'
-                      }`}>
-                        {m.value}
-                      </span>
-                      {m.detail && (
-                        <span className="text-[10px] text-content-faint leading-tight">
-                          {m.detail}
+                  {project.metrics.map((m, idx) => {
+                    const isPending = m.value.startsWith('TODO_RAHUL:');
+                    const cleanValue = isPending ? m.value.replace('TODO_RAHUL:', '').trim() || 'Pending Baseline' : m.value;
+
+                    return (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-lg bg-surface-subtle border border-surface-border flex flex-col gap-0.5"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] text-content-muted">{m.label}</span>
+                          {!m.verified && (
+                            <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-signal-orange/10 text-signal-orange border border-signal-orange/20">
+                              Calibrating
+                            </span>
+                          )}
+                        </div>
+                        <span className={`text-base font-mono font-bold ${
+                          m.verified ? 'text-primary' : 'text-signal-orange'
+                        }`}>
+                          {cleanValue}
                         </span>
-                      )}
-                    </div>
-                  ))}
+                        {m.detail && (
+                          <span className="text-[10px] text-content-faint leading-tight">
+                            {m.detail}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {/* Footer: Tech stack & Links */}
