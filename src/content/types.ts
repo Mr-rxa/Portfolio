@@ -1,4 +1,4 @@
-export type PlayableProofType = 'battery-twin' | 'retail-war-room' | 'smart-ambulance' | 'rice-disease' | 'olist-cloud' | 'none';
+export type PlayableProofType = 'retail-war-room' | 'smart-ambulance' | 'rice-disease' | 'olist-cloud' | 'none';
 
 export interface ProjectMetric {
   label: string;

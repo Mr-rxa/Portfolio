@@ -30,8 +30,8 @@ The spectacle comes from the information itself — not decoration.
 │                  │                                          │
 │  • Hero pitch    │  ┌──────────────────────────────────┐   │
 │  • Tech filter   │  │  HeroBatteryTwin                 │   │
-│  • 6 project     │  │  Physics-informed EV model       │   │
-│    cards         │  │  Interactive sliders + canvas    │   │
+│  • 5 project     │  │  Physics-informed EV model       │   │
+│    cards         │  │  Interactive sliders + canvas    │
 │  • Experience    │  └──────────────────────────────────┘   │
 │  • Education     │  ┌──────────────────────────────────┐   │
 │  • Skills matrix │  │  CausalGraph (d3-force canvas)   │   │
@@ -40,7 +40,7 @@ The spectacle comes from the information itself — not decoration.
 │                  │  └──────────────────────────────────┘   │
 │                  │  ┌──────────────────────────────────┐   │
 │                  │  │  Playable Proofs Index           │   │
-│                  │  │  6 interactive simulations       │   │
+│                  │  │  4 interactive simulations       │   │
 │                  │  └──────────────────────────────────┘   │
 ├──────────────────┴─────────────────────────────────────────┤
 │  CaseStudyModal  (opens on node click)                     │
@@ -71,7 +71,7 @@ Every project follows a strict typed schema (`src/content/types.ts`):
 
 ```ts
 {
-  id: string;            // causal-ev
+  id: string;            // retail-war-room
   slug: string;          // same as id, used in URL hash
   title: string;
   category: string;
@@ -82,8 +82,7 @@ Every project follows a strict typed schema (`src/content/types.ts`):
   impact: string;
   metrics: { label, value, detail, verified }[];
   techStack: string[];
-  proofType: 'battery-twin' | 'retail-war-room' | 'smart-ambulance'
-           | 'rice-disease' | 'olist-cloud' | 'none';
+  proofType: 'retail-war-room' | 'smart-ambulance' | 'rice-disease' | 'olist-cloud' | 'none';
   featured: boolean;
   githubUrl?: string;
   date: string;
@@ -98,7 +97,6 @@ Each major project has a live interactive simulation inside its modal:
 
 | Project | Proof Type | What You Can Do |
 |---|---|---|
-| CausalEV Battery Twin | Causal DAG inspector | Drag edges, run counterfactuals |
 | AI Retail War Room | BI Dashboard | Switch hubs, see Prophet forecasts |
 | Smart Ambulance Dispatch | City grid simulation | Drop incidents, toggle traffic jams |
 | Rice Disease Detection | CNN classifier | Select leaf samples, inspect softmax |

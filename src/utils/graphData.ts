@@ -67,16 +67,11 @@ export function buildCausalGraph(): CausalGraphData {
       color: '#FF5B1F', // Signal orange
     });
 
-    // Connect Revolt to Retail War Room & CausalEV
+    // Connect Revolt to Retail War Room
     links.push({
       source: expId,
       target: 'proj-retail-war-room',
       relation: 'incubated',
-    });
-    links.push({
-      source: expId,
-      target: 'proj-causal-ev',
-      relation: 'inspired_by',
     });
 
     exp.techStack.forEach((t) => {

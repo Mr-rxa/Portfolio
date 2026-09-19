@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 
 export const HeroBatteryTwin: React.FC = () => {
-  const { setViewMode, setActiveProjectId } = usePortfolioStore();
+  const { setViewMode } = usePortfolioStore();
   const [temperature, setTemperature] = useState<number>(38);
   const [cRate, setCRate] = useState<number>(1.5);
   const [state, setState] = useState<BatteryTwinState>(computeBatteryTwin(38, 1.5));
@@ -129,12 +129,7 @@ export const HeroBatteryTwin: React.FC = () => {
             <div className="flex items-center gap-2 text-xs font-mono text-content-muted">
               <span className="text-primary">● Live Physics-Inspired JS</span>
               <span>•</span>
-              <button
-                onClick={() => setActiveProjectId('causal-ev')}
-                className="hover:text-primary underline flex items-center gap-1"
-              >
-                <span>Full CausalEV Case Study</span>
-              </button>
+              <span className="text-content-faint">Arrhenius &amp; SEI Simulation</span>
             </div>
           </div>
 

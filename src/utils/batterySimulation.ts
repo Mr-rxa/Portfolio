@@ -1,5 +1,5 @@
 // Illustrative EV Battery Twin physics-inspired model
-// Reference: CausalEV research model
+// Reference: Arrhenius electrochemical degradation & lithium plating dynamics
 
 export interface BatteryTwinState {
   temperature: number; // -10 to 50 Celsius

@@ -4,7 +4,6 @@ import { projectsData } from '../content/projects';
 import { X, PlayCircle, BookOpen } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
-import { BatteryTwinProof } from './proofs/BatteryTwinProof';
 import { WarRoomProof } from './proofs/WarRoomProof';
 import { SmartAmbulanceProof } from './proofs/SmartAmbulanceProof';
 import { RiceDiseaseProof } from './proofs/RiceDiseaseProof';
@@ -39,8 +38,6 @@ export const CaseStudyModal: React.FC = () => {
 
   const renderProof = () => {
     switch (project.proofType) {
-      case 'battery-twin':
-        return <BatteryTwinProof />;
       case 'retail-war-room':
         return <WarRoomProof />;
       case 'smart-ambulance':

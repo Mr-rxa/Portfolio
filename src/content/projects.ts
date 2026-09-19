@@ -2,27 +2,6 @@ import { Project } from './types';
 
 export const projectsData: Project[] = [
   {
-    id: "causal-ev",
-    slug: "causal-ev",
-    title: "CausalEV: Battery Degradation Twin",
-    category: "Causal Systems",
-    summary: "Physics-informed causal simulation modeling EV battery degradation across ambient temperature, charging frequency, and depth of discharge.",
-    problem: "Traditional EV telemetry correlates high ambient temperature with range drop, but conflates reversible thermal resistance with irreversible lithium plating and SEI layer growth, leading to premature pack decommissioning.",
-    contribution: "Constructed structural causal graphs isolating ambient temperature and discharge rate mechanisms. Built an interactive twin computing degraded capacity and projected pack lifetime under varying operating climates.",
-    architecture: "DoWhy / Causal Graphical Models -> Synthetic telemetry pipeline -> WebGL/Canvas degradation curve engine.",
-    impact: "Provides counterfactual reasoning ('What if this fleet operated 5°C cooler?') without requiring millions of physical testing cycles.",
-    metrics: [
-      { label: "Causal Mechanism", value: "5 Nodes", detail: "Temp -> SEI -> Degradation -> Pack Loss", verified: true },
-      { label: "Prediction Delta", value: "TODO_RAHUL: Add MAPE %", detail: "Degradation error vs physical baseline", verified: false },
-      { label: "Cycle Simulation", value: "1,500+", detail: "Simulated charge-discharge stress cycles", verified: true }
-    ],
-    techStack: ["Python", "DoWhy", "NumPy", "Pandas", "TypeScript", "Canvas API"],
-    proofType: "battery-twin",
-    featured: true,
-    githubUrl: "https://github.com/rahulsharma/causal-ev", // TODO_RAHUL: Insert repo URL
-    date: "2024"
-  },
-  {
     id: "retail-war-room",
     slug: "retail-war-room",
     title: "AI Retail War Room (Revolt Prototype)",
