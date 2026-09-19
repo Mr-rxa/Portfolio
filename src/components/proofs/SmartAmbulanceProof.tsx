@@ -193,13 +193,13 @@ export const SmartAmbulanceProof: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-border pb-4">
         <div>
           <h4 className="text-base font-bold text-content flex items-center gap-2">
-            <span>Dynamic Dispatch & Reroute Engine</span>
+            <span>Lifeline-AI: Dynamic Dispatch &amp; Telemetry Engine</span>
             <span className="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-xs font-mono">
               Live Simulation
             </span>
           </h4>
           <p className="text-xs text-content-muted mt-0.5">
-            Click anywhere on the road grid to trigger an emergency call. Watch ambulances dynamically re-route around congestion.
+            Click anywhere on the urban grid to trigger an emergency call. Watch ambulances dynamically reroute around congestion to the nearest medical center.
           </p>
         </div>
 

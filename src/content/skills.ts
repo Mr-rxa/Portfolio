@@ -5,42 +5,42 @@ export const skillCategories: SkillCategory[] = [
     category: "Languages",
     description: "Core programming and querying languages used across production scripts and system prototypes.",
     skills: [
-      { name: "Python", level: "core", usedIn: ["retail-war-room", "smart-ambulance", "rice-disease", "olist-analytics", "revolt-motors"] },
-      { name: "SQL", level: "core", usedIn: ["retail-war-room", "olist-analytics", "revolt-motors"] },
-      { name: "TypeScript / JS", level: "proficient", usedIn: ["smart-ambulance", "portfolio"] },
+      { name: "Python", level: "core", usedIn: ["ai-retail-war-room", "lifeline-ai", "signal-pipeline-mlops", "trading-bot-binance", "farm-to-fork", "uidai", "revolt-motors"] },
+      { name: "SQL", level: "core", usedIn: ["ai-retail-war-room", "farm-to-fork", "revolt-motors"] },
+      { name: "TypeScript / JS", level: "proficient", usedIn: ["lifeline-ai", "portfolio"] },
       { name: "C++", level: "familiar", usedIn: ["education"] }
     ]
   },
   {
     category: "Machine Learning & AI",
-    description: "Statistical modeling, causal inference, and deep computer vision frameworks.",
+    description: "Time-series forecasting, Generative AI reporting, and algorithmic routing.",
     skills: [
-      { name: "PyTorch", level: "core", usedIn: ["rice-disease", "cattle-breed"] },
-      { name: "Graph Algorithms / Routing", level: "core", usedIn: ["smart-ambulance"] },
-      { name: "Scikit-Learn", level: "core", usedIn: ["olist-analytics", "retail-war-room"] },
-      { name: "OpenCV", level: "proficient", usedIn: ["rice-disease", "cattle-breed"] },
-      { name: "Prophet", level: "proficient", usedIn: ["retail-war-room"] },
-      { name: "NLP / Spacy", level: "proficient", usedIn: ["revolt-motors"] }
+      { name: "Prophet (Time-Series)", level: "core", usedIn: ["ai-retail-war-room"] },
+      { name: "Google Gemini GenAI", level: "core", usedIn: ["ai-retail-war-room"] },
+      { name: "Geospatial Routing & Dispatch", level: "core", usedIn: ["lifeline-ai"] },
+      { name: "MLOps & Signal Pipelines", level: "core", usedIn: ["signal-pipeline-mlops"] },
+      { name: "NLP & Spacy", level: "proficient", usedIn: ["revolt-motors"] },
+      { name: "Scikit-Learn", level: "proficient", usedIn: ["ai-retail-war-room", "uidai"] }
     ]
   },
   {
     category: "Data Engineering & BI",
     description: "Data transformation, warehousing, exploratory analysis, and automated reporting.",
     skills: [
-      { name: "Pandas & NumPy", level: "core", usedIn: ["retail-war-room", "olist-analytics", "revolt-motors"] },
-      { name: "DuckDB / SQLite", level: "proficient", usedIn: ["olist-analytics", "retail-war-room"] },
-      { name: "Data Pipeline Automation", level: "core", usedIn: ["revolt-motors", "retail-war-room"] },
-      { name: "Exploratory Data Analysis (EDA)", level: "core", usedIn: ["olist-analytics", "revolt-motors"] }
+      { name: "Pandas & NumPy", level: "core", usedIn: ["ai-retail-war-room", "signal-pipeline-mlops", "uidai", "revolt-motors"] },
+      { name: "PostgreSQL & SQLite", level: "core", usedIn: ["ai-retail-war-room", "farm-to-fork"] },
+      { name: "Large-Scale EDA (1M+ Rows)", level: "core", usedIn: ["uidai", "revolt-motors"] },
+      { name: "Docker Containerization", level: "proficient", usedIn: ["signal-pipeline-mlops"] }
     ]
   },
   {
     category: "Web & Developer Tools",
-    description: "Interactive frontends, API microservices, and graph algorithms.",
+    description: "Production APIs, algorithmic trading execution, and modern responsive frontends.",
     skills: [
-      { name: "React & Vite", level: "core", usedIn: ["portfolio", "retail-war-room"] },
-      { name: "Tailwind CSS", level: "core", usedIn: ["portfolio", "retail-war-room"] },
-      { name: "HTML5 Canvas API", level: "proficient", usedIn: ["smart-ambulance", "portfolio"] },
-      { name: "Flask & FastAPI", level: "proficient", usedIn: ["retail-war-room", "rice-disease"] },
+      { name: "Flask & FastAPI", level: "core", usedIn: ["ai-retail-war-room", "lifeline-ai", "farm-to-fork"] },
+      { name: "Binance Futures API & HMAC", level: "core", usedIn: ["trading-bot-binance"] },
+      { name: "React & Vite", level: "core", usedIn: ["portfolio"] },
+      { name: "Tailwind CSS", level: "core", usedIn: ["portfolio"] },
       { name: "Git & GitHub", level: "core", usedIn: ["all"] }
     ]
   }

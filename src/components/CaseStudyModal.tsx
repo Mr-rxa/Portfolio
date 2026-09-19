@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { usePortfolioStore } from '../store/portfolioStore';
 import { projectsData } from '../content/projects';
-import { X, PlayCircle, BookOpen } from 'lucide-react';
+import { X, PlayCircle, BookOpen, ExternalLink, GitCommit } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 import { WarRoomProof } from './proofs/WarRoomProof';
 import { SmartAmbulanceProof } from './proofs/SmartAmbulanceProof';
-import { RiceDiseaseProof } from './proofs/RiceDiseaseProof';
-import { OlistProof } from './proofs/OlistProof';
+import { SignalPipelineProof } from './proofs/SignalPipelineProof';
 
 export const CaseStudyModal: React.FC = () => {
   const { activeProjectId, setActiveProjectId } = usePortfolioStore();
@@ -40,16 +39,15 @@ export const CaseStudyModal: React.FC = () => {
     switch (project.proofType) {
       case 'retail-war-room':
         return <WarRoomProof />;
-      case 'smart-ambulance':
+      case 'lifeline-ai':
         return <SmartAmbulanceProof />;
-      case 'rice-disease':
-        return <RiceDiseaseProof />;
-      case 'olist-cloud':
-        return <OlistProof />;
+      case 'signal-pipeline':
+        return <SignalPipelineProof />;
       default:
         return (
-          <div className="p-12 text-center text-content-muted font-mono text-xs rounded-xl bg-surface border border-surface-border">
-            Academic research publication. See Case Study tab for the methodology and manuscript details.
+          <div className="p-12 text-center text-content-muted font-mono text-xs rounded-xl bg-surface border border-surface-border flex flex-col items-center gap-2">
+            <GitCommit className="w-5 h-5 text-primary" />
+            <span>Interactive sandbox not applicable for this repository. Inspect the Step-by-Step Architecture below.</span>
           </div>
         );
     }
@@ -66,6 +64,17 @@ export const CaseStudyModal: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-xs font-mono font-medium"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Live App</span>
+              </a>
+            )}
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
@@ -74,7 +83,7 @@ export const CaseStudyModal: React.FC = () => {
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-surface-border hover:text-primary transition-colors text-xs font-mono text-content-muted"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
-                <span>Source</span>
+                <span>GitHub Repo</span>
               </a>
             )}
             <button
@@ -88,9 +97,11 @@ export const CaseStudyModal: React.FC = () => {
 
         <div className="flex-1 overflow-y-auto p-6 sm:p-8 flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-content">
-              {project.title}
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-content font-mono">
+                {project.title}
+              </h2>
+            </div>
             <p className="text-sm sm:text-base text-content-muted leading-relaxed">
               {project.summary}
             </p>
@@ -119,7 +130,7 @@ export const CaseStudyModal: React.FC = () => {
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span>Case Study & Architecture</span>
+              <span>Step-by-Step Architecture</span>
             </button>
           </div>
 
@@ -129,15 +140,17 @@ export const CaseStudyModal: React.FC = () => {
             </div>
           ) : (
             <div className="flex flex-col gap-6 animate-in fade-in duration-150">
+              {/* 01. The Problem */}
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-2">
                 <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
-                  <span className="text-primary font-mono">01.</span> The Real Problem
+                  <span className="text-primary font-mono">01.</span> Problem Statement
                 </span>
                 <p className="text-sm text-content-muted leading-relaxed">
                   {project.problem}
                 </p>
               </div>
 
+              {/* 02. Technical Contribution */}
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-2">
                 <span className="text-xs font-mono uppercase font-bold text-primary flex items-center gap-1.5">
                   <span className="text-primary font-mono">02.</span> Technical Contribution
@@ -147,6 +160,7 @@ export const CaseStudyModal: React.FC = () => {
                 </p>
               </div>
 
+              {/* 03. Pipeline Architecture */}
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-3">
                 <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
                   <span className="text-primary font-mono">03.</span> System Architecture &amp; Data Pipeline
@@ -156,7 +170,7 @@ export const CaseStudyModal: React.FC = () => {
                     const stage = rawStage.trim();
                     return (
                       <React.Fragment key={idx}>
-                        <div className="flex-1 min-w-[140px] p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1.5 hover:border-primary/50 transition-colors group">
+                        <div className="flex-1 min-w-[130px] p-3.5 rounded-lg bg-background border border-surface-border flex flex-col gap-1.5 hover:border-primary/50 transition-colors group">
                           <div className="flex items-center justify-between text-[10px] font-mono text-content-faint">
                             <span>STAGE 0{idx + 1}</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-primary/70 group-hover:bg-primary transition-colors" />
@@ -176,9 +190,41 @@ export const CaseStudyModal: React.FC = () => {
                 </div>
               </div>
 
+              {/* 04. Real Steps (Zero to Current) */}
+              {project.steps && project.steps.length > 0 && (
+                <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-3">
+                  <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
+                    <span className="text-primary font-mono">04.</span> Real Steps &amp; Progression (Zero to Current)
+                  </span>
+                  <p className="text-xs text-content-muted">
+                    Trace of architectural milestones and commits directly from the GitHub repository history:
+                  </p>
+                  <div className="flex flex-col gap-2.5 pt-1">
+                    {project.steps.map((s) => (
+                      <div
+                        key={s.step}
+                        className="p-3.5 rounded-lg bg-background border border-surface-border flex flex-col sm:flex-row sm:items-start gap-3 hover:border-surface-border/90 transition-colors"
+                      >
+                        <div className="flex items-center sm:flex-col sm:items-start gap-2 shrink-0 min-w-[130px]">
+                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-surface border border-surface-border text-primary">
+                            STEP 0{s.step}
+                          </span>
+                          <span className="text-[10px] font-mono text-content-muted">{s.phase}</span>
+                        </div>
+                        <div className="flex flex-col gap-0.5 flex-1">
+                          <span className="text-xs font-mono font-bold text-content">{s.title}</span>
+                          <p className="text-xs text-content-muted leading-relaxed">{s.detail}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 05. Quantitative Impact */}
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-3">
                 <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
-                  <span className="text-primary font-mono">04.</span> Quantitative Impact
+                  <span className="text-primary font-mono">05.</span> System Metrics &amp; Validation
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {project.metrics.map((m, idx) => {
@@ -212,9 +258,10 @@ export const CaseStudyModal: React.FC = () => {
                 </div>
               </div>
 
+              {/* 06. Impact & Forward View */}
               <div className="p-5 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-2">
                 <span className="text-xs font-mono uppercase font-bold text-content flex items-center gap-1.5">
-                  <span className="text-primary font-mono">05.</span> Impact &amp; Forward View
+                  <span className="text-primary font-mono">06.</span> Operational Impact
                 </span>
                 <p className="text-sm text-content-muted leading-relaxed">
                   {project.impact}

@@ -8,7 +8,7 @@ import { usePortfolioStore } from '../store/portfolioStore';
 import { 
   FileText, Mail, ArrowUpRight, 
   CheckCircle2, Sparkles, Building2, GraduationCap, 
-  Cpu, Layers, PlayCircle, Filter
+  Cpu, Layers, PlayCircle, Filter, ExternalLink
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/Icons';
 
@@ -263,15 +263,28 @@ export const RecruiterView: React.FC = () => {
                     </h3>
                   </div>
 
-                  {project.proofType !== 'none' && (
-                    <button
-                      onClick={() => setActiveProjectId(project.slug)}
-                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-subtle border border-surface-border text-xs font-mono text-primary w-fit hover:border-primary/50 transition-colors"
-                    >
-                      <PlayCircle className="w-3.5 h-3.5" />
-                      <span>Interactive Proof</span>
-                    </button>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary hover:bg-primary/20 transition-colors font-medium"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                    {project.proofType !== 'none' && (
+                      <button
+                        onClick={() => setActiveProjectId(project.slug)}
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-subtle border border-surface-border text-xs font-mono text-primary w-fit hover:border-primary/50 transition-colors"
+                      >
+                        <PlayCircle className="w-3.5 h-3.5" />
+                        <span>Interactive Proof</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 <p className="text-sm text-content-muted leading-relaxed">
@@ -307,6 +320,31 @@ export const RecruiterView: React.FC = () => {
                     </p>
                   </div>
                 </div>
+
+                {/* Real Steps (Zero to Current) */}
+                {project.steps && project.steps.length > 0 && (
+                  <div className="p-3.5 rounded-lg bg-surface-subtle/30 border border-surface-border flex flex-col gap-2">
+                    <div className="flex items-center justify-between text-xs font-mono text-content font-semibold">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-primary" />
+                        <span>Development Progression (Zero to Current)</span>
+                      </span>
+                      <span className="text-[10px] text-content-faint">{project.steps.length} Real Milestones</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-1">
+                      {project.steps.map((s) => (
+                        <div key={s.step} className="p-2.5 rounded-md bg-background border border-surface-border flex flex-col gap-1">
+                          <div className="flex items-center justify-between text-[9px] font-mono text-content-faint">
+                            <span className="text-primary font-bold">STEP 0{s.step}</span>
+                            <span>{s.phase}</span>
+                          </div>
+                          <span className="text-[11px] font-mono font-medium text-content">{s.title}</span>
+                          <p className="text-[10px] text-content-muted line-clamp-2 leading-relaxed">{s.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Quantitative Impact Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
@@ -356,6 +394,17 @@ export const RecruiterView: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-3 font-mono text-xs">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-1 text-primary hover:underline font-medium"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -367,15 +416,13 @@ export const RecruiterView: React.FC = () => {
                         <span>Source</span>
                       </a>
                     )}
-                    {project.proofType !== 'none' && (
-                      <button
-                        onClick={() => setActiveProjectId(project.slug)}
-                        className="flex items-center gap-1 text-primary hover:underline font-semibold"
-                      >
-                        <span>Interactive Proof</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    )}
+                    <button
+                      onClick={() => setActiveProjectId(project.slug)}
+                      className="flex items-center gap-1 text-content-muted hover:text-primary transition-colors"
+                    >
+                      <span>Case Study</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </article>

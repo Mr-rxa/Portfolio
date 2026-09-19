@@ -1,4 +1,11 @@
-export type PlayableProofType = 'retail-war-room' | 'smart-ambulance' | 'rice-disease' | 'olist-cloud' | 'none';
+export type PlayableProofType = 'retail-war-room' | 'lifeline-ai' | 'signal-pipeline' | 'none';
+
+export interface ProjectStep {
+  step: number;
+  phase: string;
+  title: string;
+  detail: string;
+}
 
 export interface ProjectMetric {
   label: string;
@@ -11,12 +18,13 @@ export interface Project {
   id: string;
   slug: string;
   title: string;
-  category: 'AI / ML' | 'Causal Systems' | 'Operations / BI' | 'Computer Vision';
+  category: 'AI / ML' | 'Operations / BI' | 'MLOps & Systems' | 'FinTech & Trading' | 'Data Analytics & Public Policy';
   summary: string;
   problem: string;
   contribution: string;
   architecture: string;
   impact: string;
+  steps: ProjectStep[];
   metrics: ProjectMetric[];
   techStack: string[];
   proofType: PlayableProofType;

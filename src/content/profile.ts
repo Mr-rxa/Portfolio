@@ -9,7 +9,7 @@ export const profileData: Profile = {
   location: "Haryana / Delhi NCR, India",
   availability: "Available for Summer 2025 / 2026 AI/ML & Data Engineering Roles",
   email: "rahulsharma.connect@gmail.com", // TODO_RAHUL: Confirm official preferred contact email
-  github: "https://github.com/rahulsharma", // TODO_RAHUL: Update with your exact GitHub handle
+  github: "https://github.com/Mr-rxa",
   linkedin: "https://linkedin.com/in/rahulsharma", // TODO_RAHUL: Update with your exact LinkedIn URL
   resumeUrl: "/Rahul_Sharma_Resume.pdf", // TODO_RAHUL: Upload resume PDF to public folder
   keyStats: [
