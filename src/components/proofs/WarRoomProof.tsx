@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Building2, TrendingUp, Clock, BatteryCharging, ShieldAlert, BarChart2 } from 'lucide-react';
+import { Building2, TrendingUp, Clock, Zap, ShieldAlert, BarChart2 } from 'lucide-react';
 
 interface RegionData {
   name: string;
   weeklyUnits: number;
-  swapTurnaroundHours: number;
+  serviceTurnaroundHours: number;
   anomalyTitle: string;
   anomalySeverity: 'high' | 'medium' | 'low';
   forecastPoints: number[];
@@ -14,24 +14,24 @@ const REGIONS: Record<string, RegionData> = {
   'delhi-ncr': {
     name: 'Delhi NCR Hub',
     weeklyUnits: 142,
-    swapTurnaroundHours: 1.4,
-    anomalyTitle: 'Connaught Place Dealership: +38% surge in battery health inquiries',
+    serviceTurnaroundHours: 1.4,
+    anomalyTitle: 'Connaught Place Dealership: +38% surge in warranty component inquiries',
     anomalySeverity: 'medium',
     forecastPoints: [110, 115, 125, 130, 142, 148, 155, 160],
   },
   'bengaluru': {
     name: 'Bengaluru Tech Corridor',
     weeklyUnits: 218,
-    swapTurnaroundHours: 3.8,
-    anomalyTitle: 'Indiranagar Hub: Battery Swap Queue Bottleneck (+68% wait time)',
+    serviceTurnaroundHours: 3.8,
+    anomalyTitle: 'Indiranagar Hub: Service Bay Dispatch Bottleneck (+68% wait time)',
     anomalySeverity: 'high',
     forecastPoints: [180, 195, 205, 218, 230, 245, 260, 275],
   },
   'mumbai': {
     name: 'Mumbai Coastal Region',
     weeklyUnits: 165,
-    swapTurnaroundHours: 1.8,
-    anomalyTitle: 'Andheri West: Monsoon moisture corrosion alert on fast chargers',
+    serviceTurnaroundHours: 1.8,
+    anomalyTitle: 'Andheri West: Monsoon humidity telemetry alert on diagnostic rigs',
     anomalySeverity: 'low',
     forecastPoints: [140, 145, 152, 165, 170, 178, 185, 192],
   },
@@ -92,13 +92,13 @@ export const WarRoomProof: React.FC = () => {
 
         <div className="p-4 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-1">
           <div className="flex items-center justify-between text-content-muted">
-            <span>Swap Service Turnaround</span>
+            <span>Service Bay Turnaround</span>
             <Clock className="w-3.5 h-3.5 text-signal-orange" />
           </div>
           <span className={`text-2xl font-bold ${
-            hub.swapTurnaroundHours > 2.5 ? 'text-signal-orange' : 'text-primary'
+            hub.serviceTurnaroundHours > 2.5 ? 'text-signal-orange' : 'text-primary'
           }`}>
-            {hub.swapTurnaroundHours} <span className="text-xs font-normal text-content">hrs</span>
+            {hub.serviceTurnaroundHours} <span className="text-xs font-normal text-content">hrs</span>
           </span>
           <span className="text-[10px] text-content-muted">Target SLA: &lt; 2.0 hrs</span>
         </div>
@@ -106,7 +106,7 @@ export const WarRoomProof: React.FC = () => {
         <div className="p-4 rounded-xl bg-surface-subtle border border-surface-border flex flex-col gap-1">
           <div className="flex items-center justify-between text-content-muted">
             <span>Automated EOD Latency</span>
-            <BatteryCharging className="w-3.5 h-3.5 text-primary" />
+            <Zap className="w-3.5 h-3.5 text-primary" />
           </div>
           <span className="text-2xl font-bold text-primary">
             4.2 <span className="text-xs font-normal text-content">mins</span>

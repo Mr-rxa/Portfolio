@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroBatteryTwin } from '../components/HeroBatteryTwin';
+import { HeroCausalDeck } from '../components/HeroCausalDeck';
 import { CausalGraph } from '../components/CausalGraph';
 import { projectsData } from '../content/projects';
 import { usePortfolioStore } from '../store/portfolioStore';
@@ -10,7 +10,7 @@ export const GraphView: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen bg-background text-content flex flex-col">
-      <HeroBatteryTwin />
+      <HeroCausalDeck />
 
       {/* Mobile-only: compact project list before the graph canvas */}
       <section className="sm:hidden w-full py-8 px-4 border-b border-surface-border" aria-label="Projects (mobile list)">

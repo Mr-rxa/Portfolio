@@ -8,7 +8,7 @@ export const BootSequence: React.FC<{ onComplete: () => void }> = ({ onComplete 
     '[0.001] BIOS: Rahul Sharma Causal Kernel v2.4.0',
     '[0.045] MOUNT: Ingesting Revolt Motors telematics stream',
     '[0.120] INIT: Loading force-directed causal DAG (6 nodes, 35 edges)',
-    '[0.240] CALIBRATE: Digital Battery Twin Arrhenius model online',
+    '[0.240] CALIBRATE: Real-time decision & causal telemetry engine online',
     '[0.380] READY: System initialized. Launching portfolio.',
   ];
 
