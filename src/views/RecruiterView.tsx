@@ -11,6 +11,7 @@ import {
   Cpu, Layers, PlayCircle, Filter, ExternalLink
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/Icons';
+import { CertificationsSection } from '../components/CertificationsSection';
 
 export const RecruiterView: React.FC = () => {
   const { setViewMode, setActiveProjectId } = usePortfolioStore();
@@ -582,6 +583,9 @@ export const RecruiterView: React.FC = () => {
           </div>
         </section>
 
+        {/* 5. Certifications & Accreditations */}
+        <CertificationsSection />
+
         {/* 6. Recruiter Direct Action Footer Box */}
         <section className="p-8 rounded-2xl bg-gradient-to-br from-surface to-surface-subtle border border-primary/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
           <div className="flex flex-col gap-2 text-center sm:text-left">
@@ -614,6 +618,28 @@ export const RecruiterView: React.FC = () => {
         </section>
 
       </div>
+
+      {/* Mobile Floating Quick Navigation Bar */}
+      <nav 
+        aria-label="Mobile quick jump"
+        className="sm:hidden fixed bottom-4 left-4 right-4 z-40 bg-surface/95 backdrop-blur-md border border-surface-border rounded-xl shadow-2xl flex items-center justify-around py-2.5 px-2 text-xs font-mono"
+      >
+        <a href="#experience" className="px-2 py-1 text-content-muted hover:text-primary transition-colors">
+          Experience
+        </a>
+        <a href="#projects" className="px-2 py-1 text-content-muted hover:text-primary transition-colors">
+          Projects
+        </a>
+        <a href="#skills" className="px-2 py-1 text-content-muted hover:text-primary transition-colors">
+          Skills
+        </a>
+        <a href="#certifications" className="px-2 py-1 text-content-muted hover:text-primary transition-colors">
+          Certs
+        </a>
+        <a href={`mailto:${profileData.email}`} className="px-2.5 py-1 rounded bg-primary text-background font-bold">
+          Contact
+        </a>
+      </nav>
     </div>
   );
 };

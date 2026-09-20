@@ -7,6 +7,7 @@ import { GithubIcon } from './Icons';
 import { WarRoomProof } from './proofs/WarRoomProof';
 import { SmartAmbulanceProof } from './proofs/SmartAmbulanceProof';
 import { SignalPipelineProof } from './proofs/SignalPipelineProof';
+import { CattleBreedProof } from './proofs/CattleBreedProof';
 
 export const CaseStudyModal: React.FC = () => {
   const { activeProjectId, setActiveProjectId } = usePortfolioStore();
@@ -43,6 +44,8 @@ export const CaseStudyModal: React.FC = () => {
         return <SmartAmbulanceProof />;
       case 'signal-pipeline':
         return <SignalPipelineProof />;
+      case 'cattle-breed':
+        return <CattleBreedProof />;
       default:
         return (
           <div className="p-12 text-center text-content-muted font-mono text-xs rounded-xl bg-surface border border-surface-border flex flex-col items-center gap-2">

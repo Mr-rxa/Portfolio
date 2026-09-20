@@ -1,4 +1,4 @@
-export type PlayableProofType = 'retail-war-room' | 'lifeline-ai' | 'signal-pipeline' | 'none';
+export type PlayableProofType = 'retail-war-room' | 'lifeline-ai' | 'signal-pipeline' | 'cattle-breed' | 'none';
 
 export interface ProjectStep {
   step: number;
@@ -61,6 +61,16 @@ export interface Education {
   courses?: string[];
   achievements?: string[];
   certifications?: string[];
+}
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  credentialUrl?: string;
+  skillsLearned: string[];
+  featured?: boolean;
 }
 
 export interface SkillCategory {

@@ -56,35 +56,90 @@ export const TerminalModal: React.FC = () => {
       case 'help':
         newHistory.push({
           type: 'output',
-          text: `Available commands:\n  help        - Display this menu\n  about       - Summary of Rahul Sharma\n  projects    - List projects & case studies\n  stack       - Core technical stack\n  experience  - Revolt Motors & work background\n  recruiter   - Jump to Recruiter View\n  graph       - Switch to Causal Graph\n  resume      - Open Rahul's resume\n  clear       - Clear terminal screen\n  sudo make_coffee - Easter egg\n  matrix      - Easter egg\n  secret      - Easter egg`,
+          text: `Available commands:
+  help               - Display this menu
+  about / whoami     - Summary of Rahul Sharma
+  projects / ls      - List shipped projects & case studies
+  git log            - Recent architectural commits & milestones
+  certs              - View verified IIT Bombay & Sololearn certifications
+  stack              - Core technical engineering stack
+  experience         - Revolt Motors & My Job Grow in AI background
+  contact            - Direct communication channels & links
+  recruiter          - Jump to clean Recruiter View
+  graph              - Switch to Causal Graph Canvas
+  resume             - Open Rahul's resume PDF
+  clear              - Clear terminal output
+  secret             - Personal backstage pass`,
         });
         break;
 
       case 'about':
+      case 'whoami':
         newHistory.push({
           type: 'output',
-          text: `${profileData.name} — ${profileData.role}\n"${profileData.tagline}"\n${profileData.shortBio}\nLocation: ${profileData.location}`,
+          text: `${profileData.name} — ${profileData.role}\n"${profileData.tagline}"\n\n${profileData.shortBio}\n\nCollege: PIET (Panipat Institute of Engineering & Technology, 2024-2028)\nLocation: ${profileData.location}\nEmail: ${profileData.email}`,
         });
         break;
 
       case 'projects':
+      case 'ls':
         newHistory.push({
           type: 'output',
-          text: projectsData.map((p, i) => `[${i + 1}] ${p.title} (${p.category}) -> ${p.summary}`).join('\n\n'),
+          text: projectsData.map((p, i) => `[0${i + 1}] ${p.title} (${p.category})\n    ${p.summary}\n    Stack: ${p.techStack.join(', ')}`).join('\n\n'),
+        });
+        break;
+
+      case 'git log':
+      case 'git log --oneline':
+        newHistory.push({
+          type: 'output',
+          text: `commit 3e4fb5c (HEAD -> main) feat: modular real-time telemetry & decision pipeline
+commit b44223f feat(sih25): MobileNetV2 transfer learning on indigenous cattle breeds
+commit 892d114 feat(lifeline): dynamic emergency dispatch & spatial impedance matrix
+commit 714fa2b feat(retail): Prophet time-series & Google Gemini GenAI executive reporting
+commit 630129a feat(mlops): deterministic 10k OHLCV signal pipeline with YAML schema contract
+commit 419e044 init: Revolt Motors operational telemetry & open complaint triage engine`,
+        });
+        break;
+
+      case 'certs':
+      case 'certifications':
+        newHistory.push({
+          type: 'output',
+          text: `VERIFIED CREDENTIALS:
+  ✓ Git and GitHub — Spoken Tutorial, IIT Bombay (2025)
+  ✓ C Programming — Spoken Tutorial, IIT Bombay (2024)
+  ✓ C++ Programming — Sololearn (2025)
+  ✓ Generative AI & Prompt Engineering — My Job Grow in AI (2025)
+  ★ Smart India Hackathon (SIH) 2025 Institutional Representative`,
+        });
+        break;
+
+      case 'contact':
+        newHistory.push({
+          type: 'output',
+          text: `Email:    ${profileData.email}\nPhone:    ${profileData.phone}\nLinkedIn: ${profileData.linkedin}\nGitHub:   ${profileData.github}\nLocation: ${profileData.location}`,
         });
         break;
 
       case 'stack':
         newHistory.push({
           type: 'output',
-          text: 'Core: Python, SQL, PyTorch, Causal ML (DoWhy), TypeScript, React, DuckDB, Prophet.',
+          text: 'Languages:   Python, SQL, C++, C, JavaScript/TypeScript\nBackend:     Flask, RESTful APIs, WebSockets, Webhooks\nAI & Agents: LangChain, Agno, RAG, Google Gemini API, TensorFlow, Prophet\nData/MLOps:  Pandas, NumPy, OpenCV, Scikit-Learn, Docker, Git, n8n',
         });
         break;
 
       case 'experience':
         newHistory.push({
           type: 'output',
-          text: 'Revolt Motors (2024): Data & AI Engineering Intern. Built automated EOD reporting pipelines (-80% time) and prototype AI Retail War Room.',
+          text: `1. Revolt Motors (Jul–Aug 2026): Business Intelligence using AI Analytics Intern
+   - Built Open Complaint Dashboard with multi-parameter filter engine
+   - Automated daily EOD management reporting workflows
+   - Contributed to AI Retail War Room decision intelligence
+
+2. My Job Grow in AI (2025): AI Intern
+   - Built agentic LLM pipelines using LangChain and Agno
+   - Engineered automated n8n workflows connecting external business APIs`,
         });
         break;
 

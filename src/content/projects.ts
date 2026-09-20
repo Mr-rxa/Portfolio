@@ -222,8 +222,8 @@ export const projectsData: Project[] = [
       { label: "Robustness", value: "Unknown Rejection", detail: "Guards against out-of-distribution inputs", verified: true }
     ],
     techStack: ["Python", "TensorFlow", "MobileNetV2", "OpenCV", "CNN", "Transfer Learning"],
-    proofType: "none",
-    featured: false,
+    proofType: "cattle-breed",
+    featured: true,
     githubUrl: "https://github.com/Mr-rxa/cattle-breed-recognition",
     date: "2025"
   },

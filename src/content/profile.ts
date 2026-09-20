@@ -5,13 +5,13 @@ export const profileData: Profile = {
   handle: "rahul.dev",
   role: "AI & Data Systems Engineer",
   tagline: "I turn messy data into decisions.",
-  shortBio: "B.Tech Information Technology undergraduate (PIET, grad 2028) focused on AI engineering, backend development, and business analytics. Hands-on experience building AI-powered applications, REST APIs, machine learning pipelines, automation workflows, and data-driven dashboards using Python, Flask, TensorFlow, LangChain, n8n, and related APIs.",
+  shortBio: "2nd-year IT undergraduate at PIET building deterministic AI pipelines and real-time operational data systems. Interned at Revolt Motors automating daily EOD reporting and dealership complaint triage, and at My Job Grow in AI orchestrating agentic LangChain & n8n workflows. Pragmatic, code-first engineer with shipped full-stack apps from 1M+ Aadhaar records to live ambulance telemetry.",
   location: "Rewari, Haryana, India",
   phone: "+91-8307629663",
   availability: "Available for AI Engineering & Analytics Roles",
   email: "sharmarahul5437@gmail.com",
   github: "https://github.com/Mr-rxa",
-  linkedin: "https://linkedin.com/in/rahul-sharma-825894237",
+  linkedin: "https://linkedin.com/in/rahul-825894237",
   resumeUrl: "/Rahul_Sharma_Resume.pdf",
   keyStats: [
     {

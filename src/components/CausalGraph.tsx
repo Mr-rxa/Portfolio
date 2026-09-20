@@ -37,6 +37,11 @@ export const CausalGraph: React.FC = () => {
     return ids;
   }, [hoveredNode, graphData.links]);
 
+  const connectedNodes = React.useMemo(() => {
+    if (!hoveredNode) return [];
+    return graphData.nodes.filter((n) => n.id !== hoveredNode.id && connectedNodeIds.has(n.id));
+  }, [hoveredNode, connectedNodeIds, graphData.nodes]);
+
   const renderFrameRef = useRef<() => void>(() => {});
 
   useEffect(() => {
@@ -556,10 +561,29 @@ export const CausalGraph: React.FC = () => {
               {hoveredNode.sublabel}
             </span>
           )}
+
+          {connectedNodes.length > 0 && (
+            <div className="flex flex-col gap-1 pt-1.5 border-t border-surface-border">
+              <span className="text-[10px] text-content-faint">
+                {hoveredNode.group === 'tech' ? 'Powers Projects:' : hoveredNode.group === 'experience' ? 'Incubated Work:' : 'Connected Stack:'}
+              </span>
+              <div className="flex flex-wrap gap-1">
+                {connectedNodes.slice(0, 4).map((cn) => (
+                  <span key={cn.id} className="text-[10px] px-1.5 py-0.5 rounded bg-background border border-surface-border text-content">
+                    {cn.label}
+                  </span>
+                ))}
+                {connectedNodes.length > 4 && (
+                  <span className="text-[10px] text-content-faint">+{connectedNodes.length - 4} more</span>
+                )}
+              </div>
+            </div>
+          )}
+
           <span className="text-[10px] text-content-faint pt-1 border-t border-surface-border">
             {hoveredNode.group === 'project'
               ? 'Click node to fly in & open case study'
-              : 'Hovering highlights connected projects'}
+              : 'Hovering illuminates causal linkages across the graph'}
           </span>
         </div>
       )}
